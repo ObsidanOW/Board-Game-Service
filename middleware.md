@@ -1,0 +1,2 @@
+**MIDDLEWARE**
+The middleware "SanitizeSearch" removes any special characters in case of any malitious users, makes the search lowercase so that the string can more easily be compared against the names of boardgames.
