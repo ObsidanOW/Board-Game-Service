@@ -11,7 +11,7 @@ const BoardGamesForTesting = [
 UserRouter.get('/', SanitizeSearch, (req, res, next) => {
 
   if(req.Sanitized){
-    res.status(500);
+    res.status(200);
 res.send(req.Sanitized);
 
   }
