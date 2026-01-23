@@ -1,10 +1,14 @@
 function SanitizeSearch(req,res,next){
-const Lowercase = req.query.search.ToLowercase();
+    if(req.query.search){
+        console.log("querytype", typeof(req.query.search));
+const Lowercase = req.query.search.toLowerCase();
 
-const RegularExpression = /[^a-zA-Z0-9]/
+const RegularExpression = /[^a-zA-Z0-9]/g
 const NormalCharacters = Lowercase.replace(RegularExpression, "");
 
 req.Sanitized = NormalCharacters;
+    }
+
 next();
 }
 

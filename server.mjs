@@ -1,13 +1,11 @@
 import express from "express";
+import userRouter from "./routes/user.mjs";
 
-const app = express()
 const port = 8080
+const app = express()
+app.use(express.static('public'));
 
-app.use(express.static('public'))
-
-const  userRouter = require("./routes/user.mjs");
-
-app.use("/User", userRouter)
+app.use("/user", userRouter)
 
 app.listen(port, () => {
 
