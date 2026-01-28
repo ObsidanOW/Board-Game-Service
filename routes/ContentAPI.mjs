@@ -1,6 +1,6 @@
 import express from "express"
-import SanitizeSearch from "../modules/SanitizeSearch.mjs"
-const UserRouter = express.Router()
+import sanitizeSearch from "../modules/SanitizeSearch.mjs"
+const ContentRouter = express.Router()
 
 
 const BoardGamesForTesting = [
@@ -8,7 +8,7 @@ const BoardGamesForTesting = [
   {id: 1001, Status: 2, BelongsTo: 1, title: "Century: Big box"}
 ]
 
-UserRouter.get('/', SanitizeSearch, (req, res, next) => {
+ContentRouter.get('/', sanitizeSearch, (req, res, next) => {
 
   if(req.Sanitized){
     res.status(200);
@@ -19,16 +19,14 @@ res.send(req.Sanitized);
 })
 
 
-UserRouter.get('/boardgame/:GameId', (req,res,next) => {
+ContentRouter.get('/boardgame/:GameId', (req,res,next) => {
 
    res.send('BoardGameDetailPage');
 })
 
-UserRouter.post('/boardgame/:GameId', (req,res,next) => {
+ContentRouter.post('/boardgame/:GameId', (req,res,next) => {
 
    res.send('BoardGameRatingPost');
 })
 
-
-
-export default UserRouter;
+export default ContentRouter;

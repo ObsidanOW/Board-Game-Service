@@ -1,4 +1,4 @@
-function SanitizeSearch(req,res,next){
+function sanitizeSearch(req,res,next){
     if(req.query.search){
         console.log("querytype", typeof(req.query.search));
 const Lowercase = req.query.search.toLowerCase();
@@ -12,4 +12,4 @@ req.Sanitized = NormalCharacters;
 next();
 }
 
-export default SanitizeSearch
+export default sanitizeSearch
