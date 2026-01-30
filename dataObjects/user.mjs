@@ -4,7 +4,8 @@ const Users = {};
 function user() {
     return {
         id: null,
-        psw: null
+        psw: null,
+        name: null
     };
 }
 
@@ -20,23 +21,27 @@ export function generateUserID() {
     return id;
 }
 
-export function deleteUserByID(id) {
-    if (Users[id]) {
-        Users[id] = null;
-        return true;
-    } else {
-        return false;
-    }
+export function deleteUser(name, password) {
+    
+    if (name !== undefined && password !== undefined) {        
+        for (const user in Users) {
+            console.log(Users[user].name, name, Users[user].psw, password)
 
+            if (Users[user].name === name && Users[user].psw === password) {
+
+                delete Users[user];
+                console.log(Users);
+                  return(true)
+            }
+        }
+    }
+    return(false)
 }
 
-export function StoreUser(user){
-    if(user !== null){
-Users[user.id] =  user;
-    }else{
-        
+export function storeUser(user) {
+    if (user !== null) {
+        Users[user.id] = user;
     }
-
 }
 
 

@@ -1,8 +1,8 @@
 import { createHmac } from 'node:crypto';
+import 'dotenv/config'
 
-function securityAudit(req, res, next) {
-
-    if (req.method === "post") {
+export function securityAudit(req, res, next) {
+    if (req.method === "POST" || req.method === "DELETE") {
         if (req.body.password) {
             let psw = req.body.password;
             req.body.password = "";
@@ -10,18 +10,19 @@ function securityAudit(req, res, next) {
             req.token = securityToken;
         }
     }
-
+    next();
 }
 
 function createSecurePassToken(psw, secret) {
     return {
         psw: hashPassword(psw, secret),
-        token: {/* Token info */ }
+        token: { placeholder: "placeholder" }
     }
 }
 
 function hashPassword(psw, secret) {
     const hmac = createHmac("sha256", secret);
+    console.log(hmac);
     hmac.update(psw);
     return hmac.digest("hex");
 }
