@@ -8,11 +8,11 @@ const userRouter = express.Router()
 
 userRouter.use(express.json());
 
-userRouter.get('/', (req, res, next) => {
+userRouter.get('/login', (req, res, next) => {
     res.send('LoginPage');
 })
 
-userRouter.post('/', (req, res, next) => {
+userRouter.post('/login', (req, res, next) => {
     //TODO check name and password
     res.send('LoggedIn');
 })
@@ -40,7 +40,7 @@ userRouter.post('/createuser', securityAudit, (req, res, next) => {
     }
 })
 
-userRouter.delete('/createuser', securityAudit, (req, res, next) => {
+userRouter.delete('/deleteuser', securityAudit, (req, res, next) => {
 
     if(deleteUser(req.body.name, req.token.psw) === false){
   //TODO wrong input user error 300

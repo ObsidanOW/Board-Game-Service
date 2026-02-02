@@ -8,7 +8,7 @@ const BoardGamesForTesting = [
   {id: 1001, Status: 2, BelongsTo: 1, title: "Century: Big box"}
 ]
 
-ContentRouter.get('/', sanitizeSearch, (req, res, next) => {
+ContentRouter.get('/home', sanitizeSearch, (req, res, next) => {
 
   if(req.Sanitized){
     res.status(200);
@@ -24,7 +24,7 @@ ContentRouter.get('/boardgame/:GameId', (req,res,next) => {
    res.send('BoardGameDetailPage');
 })
 
-ContentRouter.post('/boardgame/:GameId', (req,res,next) => {
+ContentRouter.post('/boardgame/rate/:GameId', (req,res,next) => {
 
    res.send('BoardGameRatingPost');
 })
