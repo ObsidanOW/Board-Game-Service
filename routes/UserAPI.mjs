@@ -8,17 +8,10 @@ const userRouter = express.Router()
 
 userRouter.use(express.json());
 
-userRouter.get('/login', (req, res, next) => {
-    res.send('LoginPage');
-})
 
 userRouter.post('/login', (req, res, next) => {
     //TODO check name and password
     res.send('LoggedIn');
-})
-
-userRouter.get('/createuser', (req, res, next) => {
-    res.send('Type ?ToS=true as a url querry to consent to Terms of Service https://uiano-my.sharepoint.com/:w:/g/personal/filiplr_uia_no/IQBn1Vdmf0ADRZ1uBCEHCf2GAVkPPTfIIkJqS_yVeX4Mk60?e=qcXocB. data privacy policy: https://uiano-my.sharepoint.com/:w:/g/personal/filiplr_uia_no/IQBsMzg-vnDJT5PATj0V89axAV68zSGsi0uKQboL6lXSX-M?e=bjs04D. Want to retract your consent? Send a DELETE request with your login info in the body, this will delete your account and remove your data')
 })
 
 userRouter.post('/createuser', securityAudit, (req, res, next) => {

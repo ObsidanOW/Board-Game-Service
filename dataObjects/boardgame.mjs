@@ -1,9 +1,12 @@
-const Boardgames
+const BoardGames = {}
 
-function boardgame(){
+function boardGame(){
   return{
     id: null,
-    psw: null,
-    name: null
-  }  
+    status: null,
+    name: null,
+    description: null,
+    players: null,
+    difficulty: null
+  } 
 }

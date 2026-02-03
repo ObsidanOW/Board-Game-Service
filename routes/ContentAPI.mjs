@@ -25,7 +25,7 @@ ContentRouter.get('/boardgame/:GameId', (req,res,next) => {
 })
 
 ContentRouter.post('/boardgame/rate/:GameId', (req,res,next) => {
-
+  
    res.send('BoardGameRatingPost');
 })
 
