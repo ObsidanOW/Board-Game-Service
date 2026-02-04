@@ -13,7 +13,7 @@ const viewmap = {
 }
 
 //TODO NavigateTo
-pageContainer.appendChild(UserSettings)
+Load();
 
 function Load(){
     NavigateTo("userSettings");
@@ -22,7 +22,7 @@ function Load(){
 
 pageContainer.addEventListener("CreateUserEvent", async function(evt){
 console.log("event object: ", evt)
-PostUsers(evt.detail.Form);
+PostUsers(evt.detail);
 })
 
 function NavigateTo(view, push){

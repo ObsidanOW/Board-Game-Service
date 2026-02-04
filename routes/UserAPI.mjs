@@ -14,7 +14,8 @@ userRouter.post('/login', (req, res, next) => {
     res.send('LoggedIn');
 })
 
-userRouter.post('/createuser', securityAudit, (req, res, next) => {
+userRouter.post('/createuser',securityAudit, (req, res, next) => {
+    console.log("POST endpoint")
     if (req.query.ToS !== "true") {
         res.send('Did not consent');
     } else {
@@ -25,11 +26,9 @@ userRouter.post('/createuser', securityAudit, (req, res, next) => {
             newUser.name = req.body.name;
             newUser.psw = req.token.psw;
             storeUser(newUser);
-
             res.send('createUser with id and psw');
-        } else {
-            res.send('no valid userinfo');
-        }
+        } 
+        res.send('no valid userinfo' )
     }
 })
 

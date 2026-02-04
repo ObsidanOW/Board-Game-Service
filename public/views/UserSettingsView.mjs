@@ -5,74 +5,46 @@ export class UserSettingsView extends HTMLElement {
 
         this.shadow = this.attachShadow({ mode: "open" })
 
-        const CreateHeader = document.createElement("h1");
-        CreateHeader.innerText = "Create User";
-        const CreateUserForm = document.createElement("Form");
-        const CreateName = document.createElement("input");
-        CreateName.placeholder = "username";
-        const CreatePassword = document.createElement("input");
-        CreatePassword.placeholder = "password";
-        const CreateUserBtn = document.createElement("button");
-        CreateUserBtn.innerText = "Create User"
+        this.shadow.innerHTML =` 
+         <form id="create"> 
+        <h1>Create user</h1> 
+        <input name="name" placeholder="username" />
+        <input name="password" placeholder="password" />
+        <button type="submit">Create User</button>
+        </form>
+        
+        <form id="edit"> 
+        <h1>Edit user</h1> 
+        <input name="name" placeholder="username" />
+        <input name="password" placeholder="password" />
+        <input name="newname" placeholder="new username"/>
+        <input name="newpassword" placeholder="new password"/>
+        <button type="submit">Edit user</button>
+        </form>
 
-        CreateUserForm.appendChild(CreateHeader);
-        CreateUserForm.appendChild(CreateName);
-        CreateUserForm.appendChild(CreatePassword);
-        CreateUserForm.appendChild(CreateUserBtn);
-        this.shadow.appendChild(CreateUserForm);
-
-        const EditHeader = document.createElement("h1");
-        EditHeader.innerText = "Edit User";
-        const EditUserForm = document.createElement("Form");
-        const EditName = document.createElement("input");
-        EditName.placeholder = "username";
-        const EditPassword = document.createElement("input");
-        EditPassword.placeholder = "password";
-        const EditUserBtn = document.createElement("button");
-        EditUserBtn.innerText = "Edit User"
-
-        EditUserForm.appendChild(EditHeader);
-        EditUserForm.appendChild(EditName);
-        EditUserForm.appendChild(EditPassword);
-        EditUserForm.appendChild(EditUserBtn);
-        this.shadow.appendChild(EditUserForm);
-
-        const DeleteHeader = document.createElement("h1");
-        DeleteHeader.innerText = "Delete User";
-        const DeleteUserForm = document.createElement("Form");
-        const DeleteName = document.createElement("input");
-        DeleteName.placeholder = "username";
-        const DeletePassword = document.createElement("input");
-        DeletePassword.placeholder = "password";
-        const DeleteUserBtn = document.createElement("button");
-        DeleteUserBtn.innerText = "Delete User"
-
-        DeleteUserForm.appendChild(DeleteHeader);
-        DeleteUserForm.appendChild(DeleteName);
-        DeleteUserForm.appendChild(DeletePassword);
-        DeleteUserForm.appendChild(DeleteUserBtn);
-        this.shadow.appendChild(DeleteUserForm);
+        <form id="delete"> 
+        <h1>Delete user</h1> 
+        <input name="name" placeholder="username" />
+        <input name="password" placeholder="password" />
+        <button type="submit">Delete user</button>
+        </form>
+        `;
 
 
+        const CreateForm = this.shadowRoot.getElementById("create");
+        console.log(CreateForm);
+        const EditForm = this.shadowRoot.getElementById("edit");
+        const DeleteForm = this.shadowRoot.getElementById("delete");
 
-        CreateUserBtn.addEventListener("click", (evt) => {
+        CreateForm.addEventListener("submit", (evt) => {
             evt.preventDefault();
-            const Form = new FormData(CreateUserForm)
+               const formData = new FormData(CreateForm);
+               const Form = Object.fromEntries(formData.entries()) 
             const CreateUserEvent = new CustomEvent("CreateUserEvent",
-                { composed: true, bubbles: true, detail: { Form } })
+                { composed: true, bubbles: true, detail: Form })
             this.dispatchEvent(CreateUserEvent)
         })
 
-        EditUserBtn.addEventListener("click", () => {
-            const CreateUserEvent = new CustomEvent("EditUserEvent",
-                { composed: true, bubbles: true, detail: { name: CreateName.value, password: CreatePassword.value } })
-            this.dispatchEvent(CreateUserEvent)
-        })
-
-        DeleteUserBtn.addEventListener("click", () => {
-            const CreateUserEvent = new CustomEvent("DeleteUserEvent",
-                { composed: true, bubbles: true, detail: { name: CreateName.value, password: CreatePassword.value } })
-            this.dispatchEvent(CreateUserEvent)
-        })
+    
     }
 }
