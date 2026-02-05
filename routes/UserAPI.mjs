@@ -14,31 +14,34 @@ userRouter.post('/login', (req, res, next) => {
     res.send('LoggedIn');
 })
 
-userRouter.post('/createuser',securityAudit, (req, res, next) => {
-    console.log("POST endpoint")
-    if (req.query.ToS !== "true") {
-        res.send('Did not consent');
-    } else {
-        if (req.token) {
-            let newUser = user();
-            newUser.id = generateUserID();
+userRouter.post('/createuser', securityAudit, (req, res, next) => {
+    console.log("POST endpoint TOS: ", req.body.TOS)
+ 
 
-            newUser.name = req.body.name;
-            newUser.psw = req.token.psw;
-            storeUser(newUser);
-            res.send('createUser with id and psw');
-        } 
-        res.send('no valid userinfo' )
+    if (req.body.TOS === "on" && req.token) {
+        console.log("TOS consent")
+        let newUser = user();
+        newUser.id = generateUserID();
+
+        newUser.name = req.body.name;
+        newUser.psw = req.token.psw;
+        storeUser(newUser);
+        res.send('createUser with id and psw');
+    }else{
+        console.log("did not consent to ToS")
+        res.send('did not consent to ToS')
     }
 })
 
 userRouter.delete('/deleteuser', securityAudit, (req, res, next) => {
-
-    if(deleteUser(req.body.name, req.token.psw) === false){
-  //TODO wrong input user error 300
+console.log("Delete endpoint reached");
+    if (deleteUser(req.body.name, req.token.psw)) {
+      
+          res.send('user deleted');
+    }else{
+          //TODO wrong input user error 300
     }
-    res.send('user deleted');
-    //TODO status OK
+  
 })
 
 

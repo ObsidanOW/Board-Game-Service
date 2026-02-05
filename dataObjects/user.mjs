@@ -25,12 +25,11 @@ export function deleteUser(name, password) {
     
     if (name !== undefined && password !== undefined) {        
         for (const user in Users) {
-            console.log(Users[user].name, name, Users[user].psw, password)
 
             if (Users[user].name === name && Users[user].psw === password) {
 
                 delete Users[user];
-                console.log(Users);
+                console.log("Reaining users after deletion: ", Users);
                   return(true)
             }
         }
@@ -41,6 +40,7 @@ export function deleteUser(name, password) {
 export function storeUser(user) {
     if (user !== null) {
         Users[user.id] = user;
+        console.log("Users: ", Users);
     }
 }
 
