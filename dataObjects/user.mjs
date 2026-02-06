@@ -21,26 +21,33 @@ export function generateUserID() {
     return id;
 }
 
-export function deleteUser(name, password) {
-    
-    if (name !== undefined && password !== undefined) {        
+export function findUser(name, password) {
+    if (name !== undefined && password !== undefined) {
         for (const user in Users) {
-            console.log(Users[user].name, name, Users[user].psw, password)
-
+            console.log("searching for matching user")
             if (Users[user].name === name && Users[user].psw === password) {
-
-                delete Users[user];
-                console.log(Users);
-                  return(true)
+                console.log("found matching user")
+                return (Users[user].id)
             }
         }
     }
-    return(false)
+    return (false);
+}
+
+export function editUser(id, name, password){
+    Users[id].name = name;
+    Users[id].password = password;
+}
+
+export function deleteUser(id) {
+    delete Users[id];
+    console.log("remaining users: ", Users);
 }
 
 export function storeUser(user) {
     if (user !== null) {
         Users[user.id] = user;
+        console.log("Users: ", Users);
     }
 }
 
