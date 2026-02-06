@@ -20,7 +20,22 @@ export async function PostUser(Form){
 }
 
 export async function PatchUser(Form){
+ const url = "/user/edituser"
+    const cfg= {
+        method: "PATCH",
+        headers: {
+    "Content-Type": "application/json"
+  },
+        body: JSON.stringify(Form)
+    }
 
+     try{
+       const data = await sendRequest(url,cfg)
+       console.log("response", data);
+       return;
+    }catch{
+//TODO errorhandling
+    }
 }
 
 export async function DeleteUser(Form){

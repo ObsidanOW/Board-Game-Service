@@ -2,7 +2,7 @@ import { createHmac } from 'node:crypto';
 import 'dotenv/config'
 
 export function securityAudit(req, res, next) {
-    if (req.method === "POST" || req.method === "DELETE") {
+    if (req.method === "POST" || req.method === "DELETE" || req.method === "PATCH") {
         console.log("body: ", req.body);
         if (req.body.password) {
             let psw = req.body.password;

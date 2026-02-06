@@ -49,7 +49,7 @@ export class UserSettingsView extends HTMLElement {
 
         EditForm.addEventListener("submit", (evt) => {
             evt.preventDefault();
-            const formData = new FormData(CreateForm);
+            const formData = new FormData(EditForm);
             const Form = Object.fromEntries(formData.entries())
 
             const EditUserEvent = new CustomEvent("EditUserEvent",

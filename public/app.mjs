@@ -1,5 +1,5 @@
 import { UserSettingsView } from "./views/UserSettingsView.mjs";
-import { PostUser, DeleteUser } from "./api_service.mjs";
+import { PostUser, DeleteUser, PatchUser } from "./api_service.mjs";
 
 const pageContainer = document.getElementById("pagecontainer");
 
@@ -21,13 +21,13 @@ function Load(){
 }
 
 pageContainer.addEventListener("CreateUserEvent", async function(evt){
-
+console.log(evt);
 PostUser(evt.detail);
 })
 
 pageContainer.addEventListener("EditUserEvent", async function(evt){
-console.log("event object: ", evt)
-PatchUsers(evt.detail);
+    console.log(evt);
+PatchUser(evt.detail);
 })
 
 pageContainer.addEventListener("DeleteUserEvent", async function(evt){
