@@ -2,6 +2,7 @@ import express from "express"
 import { generateUserID, deleteUser, storeUser, findUser, editUser } from "../dataObjects/user.mjs";
 import user from "../dataObjects/user.mjs";
 import securityAudit from "../modules/security.mjs";
+import { truncateSync } from "node:fs";
 
 
 const userRouter = express.Router()
@@ -15,10 +16,11 @@ userRouter.post('/login', (req, res, next) => {
 })
 
 userRouter.post('/createuser', securityAudit, (req, res, next) => {
-    console.log("POST endpoint TOS: ", req.body.TOS)
 
-
-    if (req.body.TOS === "on" && req.token) {
+    try{
+ if(req.body.TOS !== "on" || !req.token) {
+        throw new Error("400");
+    }
         console.log("TOS consent")
         const newUser = user();
         newUser.id = generateUserID();
@@ -27,32 +29,40 @@ userRouter.post('/createuser', securityAudit, (req, res, next) => {
         newUser.psw = req.token.psw;
         storeUser(newUser);
         res.send('createUser with id and psw');
-    } else {
-        console.log("did not consent to ToS")
-        res.send('did not consent to ToS')
+
+    }catch(err){
+next(err);
     }
+   
+    
 })
 
 userRouter.patch('/edituser', securityAudit, (req, res, next) => {
- try{
-        let userId = findUser(req.body.name, req.token.psw);
-        if(!userId){
+    try {
+        const userId = findUser(req.body.name, req.token.psw);
+        if (!userId) {
             throw new Error("404");
         }
-         editUser(userId, req.body.newname, req.body.newpassword);
+        editUser(userId, req.body.newname, req.body.newpassword);
         res.send('user edited');
     }
- catch(err){next(err)}
-       
-    })
+    catch (err) {
+        next(err)
+    }
+
+})
 
 userRouter.delete('/deleteuser', securityAudit, (req, res, next) => {
-    const userId = findUser(req.body.name, req.token.psw)
-    if (userId) {
+    try {
+        const userId = findUser(req.body.name, req.token.psw)
+        if (!userId) {
+            throw new Error("404")
+        }
         deleteUser(userId)
         res.send('user deleted');
-    } else {
-        //TODO wrong input user error 300
+    }
+    catch (err) {
+        next(err);
     }
 
 })
