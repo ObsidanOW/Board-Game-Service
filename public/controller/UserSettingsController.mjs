@@ -15,46 +15,28 @@ function UserSettingsController(target) {
 function render(target) {
 
     target.innerHTML = "";
-    console.log(template.content);
     const FormElement = document.importNode(template.content, true);
-    console.log("does form element exist: ", FormElement)
 
-
-
-    const createBtn = find("#createbtn", FormElement);
-    createBtn.addEventListener("click", (evt) => {
+    const createForm = find("#create", FormElement);
+    createForm.addEventListener("submit", (evt) => {
         evt.preventDefault();
-        const CreateUserEvent = new CustomEvent("CreateUserEvent", { bubbles: true, composed: true, detail: { name: createName, psw: createPassword,  TOS: tosCheckbox} })
-            target.dispatchEvent(CreateUserEvent)
-        
+        const formData = new FormData(createForm);
+        const Form = Object.fromEntries(formData.entries());
+
+        const CreateUserEvent = new CustomEvent("CreateUserEvent", { bubbles: true, composed: true, detail: Form });
+        target.dispatchEvent(CreateUserEvent);
     })
 
-    const editBtn = find("#editbtn", FormElement);
-    editBtn.addEventListener("click", (evt) => {
+    const editForm = find("#edit", FormElement);
+    editForm.addEventListener("submit", (evt) => {
         evt.preventDefault();
-        console.log("editbtn")
+        const formData = new FormData(editForm);
+        const Form = Object.fromEntries(formData.entries());
+
+        const EditUserEvent = new CustomEvent("EditUserEvent", { bubbles: true, composed: true, detail: Form });
+        target.dispatchevent(EditUserEvent)
     })
 
-    const deleteBtn = find("#deletebtn", FormElement);
-    deleteBtn.addEventListener("click", (evt) => {
-        evt.preventDefault();
-        console.log("deletebtn")
-    })
-
-    //submit function parameters
-
-
-    const createName = find("#createname", FormElement).value;
-    const createPassword = find("#createpassword", FormElement).value;
-    const tosCheckbox = find("#tosagree", FormElement).value;
-
-    const oldName = find("#oldname", FormElement).value;
-    const oldPassword = find("#oldpassword", FormElement).value;
-    const editName = find("#newname", FormElement).value
-    const editPassword = find("#newname", FormElement).value
-
-    const deleteName = find("#deletename", FormElement).value
-    const deletePassword = find("#deletepassword", FormElement).value
 
     target.appendChild(FormElement)
 }

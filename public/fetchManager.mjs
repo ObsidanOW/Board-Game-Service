@@ -11,13 +11,13 @@ export async function get(url, contentType){
 }
 
 export async function PostUser(Form){
-    const url = "/user/createuser"
-
+     const url = "/user/createuser"
     try{
-       const data = await sendRequest("POST", url, JSON.stringify(Form), HTTP.contentTypes.application.json);
-       console.log("response", data);
+       const data = await sendRequest("POST", url, Form, HTTP.contentTypes.application.json);
+      
        return;
-    }catch{
+    }catch(err){
+        console.log("catch error", err);
 //TODO errorhandling
     }
 }

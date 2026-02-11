@@ -3,7 +3,7 @@ const errorHandler = (err, req, res, next) => {
         return next(err)
     }
     res.status(500)
-    res.render('error', { error: err })
+   // res.render('error', { error: err })
 }
 
 

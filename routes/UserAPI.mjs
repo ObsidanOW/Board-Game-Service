@@ -2,7 +2,6 @@ import express from "express"
 import { generateUserID, deleteUser, storeUser, findUser, editUser } from "../dataObjects/user.mjs";
 import user from "../dataObjects/user.mjs";
 import securityAudit from "../modules/security.mjs";
-import { truncateSync } from "node:fs";
 
 
 const userRouter = express.Router()
@@ -16,7 +15,7 @@ userRouter.post('/login', (req, res, next) => {
 })
 
 userRouter.post('/createuser', securityAudit, (req, res, next) => {
-
+console.log("endpoint reached")
     try{
  if(req.body.TOS !== "on" || !req.token) {
         throw new Error("400");
