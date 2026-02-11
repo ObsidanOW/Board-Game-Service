@@ -1,17 +1,20 @@
 import { sendRequest } from "./utils.js";
+import HTTP from "./https.mjs";
+
+export async function get(url, contentType){
+    try{
+        const data = await sendRequest("GET", url, null , contentType);
+        return data;
+    }catch{
+
+    }
+}
 
 export async function PostUser(Form){
     const url = "/user/createuser"
-    const cfg = {
-        method: "POST",
-          headers: {
-    "Content-Type": "application/json"
-  },
-        body: JSON.stringify(Form)
-    }
 
     try{
-       const data = await sendRequest(url,cfg)
+       const data = await sendRequest("POST", url, JSON.stringify(Form), HTTP.contentTypes.application.json);
        console.log("response", data);
        return;
     }catch{
