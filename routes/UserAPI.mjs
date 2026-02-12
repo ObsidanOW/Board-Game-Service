@@ -32,7 +32,7 @@ console.log("endpoint reached")
     }catch(err){
 next(err);
     }
-   
+   console.log("enpoint end");
     
 })
 
@@ -42,7 +42,7 @@ userRouter.patch('/edituser', securityAudit, (req, res, next) => {
         if (!userId) {
             throw new Error("404");
         }
-        editUser(userId, req.body.newname, req.body.newpassword);
+        editUser(userId, req.body.newname, req.newToken.psw);
         res.send('user edited');
     }
     catch (err) {

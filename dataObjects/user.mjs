@@ -15,7 +15,6 @@ export function generateUserID() {
     do {
         id = (Math.random() * Number.MAX_SAFE_INTEGER).toString(16);
     } while (
-        //TODO: check against an actual database 
         Users[id]
     );
     return id;
@@ -25,6 +24,7 @@ export function findUser(name, password) {
     if (name !== undefined && password !== undefined) {
         for (const user in Users) {
             console.log("searching for matching user")
+            console.log(Users[user].name + " " + name, ", " + Users[user].psw + " " + password);
             if (Users[user].name === name && Users[user].psw === password) {
                 console.log("found matching user")
                 return (Users[user].id)
@@ -36,7 +36,7 @@ export function findUser(name, password) {
 
 export function editUser(id, name, password){
     Users[id].name = name;
-    Users[id].password = password;
+    Users[id].psw = password;
 }
 
 export function deleteUser(id) {

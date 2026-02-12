@@ -24,16 +24,9 @@ export async function PostUser(Form){
 
 export async function PatchUser(Form){
  const url = "/user/edituser"
-    const cfg= {
-        method: "PATCH",
-        headers: {
-    "Content-Type": "application/json"
-  },
-        body: JSON.stringify(Form)
-    }
 
      try{
-       const data = await sendRequest(url,cfg)
+       const data = await sendRequest("PATCH", url, Form, HTTP.contentTypes.application.json);
        console.log("response", data);
        return;
     }catch{
@@ -43,16 +36,9 @@ export async function PatchUser(Form){
 
 export async function DeleteUser(Form){
     const url = "/user/deleteuser"
-    const cfg= {
-        method: "DELETE",
-        headers: {
-    "Content-Type": "application/json"
-  },
-        body: JSON.stringify(Form)
-    }
 
      try{
-       const data = await sendRequest(url,cfg)
+       const data = await sendRequest("DELETE", url,Form, HTTP.contentTypes.application.json);
        console.log("response", data);
        return;
     }catch{

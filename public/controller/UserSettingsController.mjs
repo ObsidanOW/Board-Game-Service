@@ -34,7 +34,17 @@ function render(target) {
         const Form = Object.fromEntries(formData.entries());
 
         const EditUserEvent = new CustomEvent("EditUserEvent", { bubbles: true, composed: true, detail: Form });
-        target.dispatchevent(EditUserEvent)
+        target.dispatchEvent(EditUserEvent)
+    })
+
+    const deleteForm = find("#delete", FormElement);
+    deleteForm.addEventListener("submit", (evt) => {
+        evt.preventDefault();
+        const formData = new FormData(deleteForm);
+        const Form = Object.fromEntries(formData.entries());
+
+        const DeleteUserEvent = new CustomEvent("DeleteUserEvent", { bubbles: true, composed: true, detail: Form });
+        target.dispatchEvent(DeleteUserEvent)
     })
 
 
