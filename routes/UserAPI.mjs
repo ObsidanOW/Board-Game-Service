@@ -20,7 +20,6 @@ console.log("endpoint reached")
  if(req.body.TOS !== "on" || !req.token) {
         throw new Error("400");
     }
-        console.log("TOS consent")
         const newUser = user();
         newUser.id = generateUserID();
 
@@ -31,9 +30,7 @@ console.log("endpoint reached")
 
     }catch(err){
 next(err);
-    }
-   console.log("enpoint end");
-    
+    }    
 })
 
 userRouter.patch('/edituser', securityAudit, (req, res, next) => {
@@ -63,7 +60,6 @@ userRouter.delete('/deleteuser', securityAudit, (req, res, next) => {
     catch (err) {
         next(err);
     }
-
 })
 
 
