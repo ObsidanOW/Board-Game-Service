@@ -1,43 +1,16 @@
-import { UserSettingsView } from "./views/UserSettingsView.mjs";
-import { PostUser, DeleteUser, PatchUser } from "./api_service.mjs";
+import UserSettingsController from "./controller/UserSettingsController.mjs";
+import { PostUser, PatchUser, DeleteUser } from "./fetchManager.mjs";
 
-const pageContainer = document.getElementById("pagecontainer");
+const userSettings = new UserSettingsController(document.body);
 
-customElements.define("user-settings-view", UserSettingsView)
-
-const UserSettings = new UserSettingsView(); 
-
-const viewmap = {
-    "home": null, 
-"userSettings": UserSettings,
-}
-
-//TODO NavigateTo
-Load();
-
-function Load(){
-    NavigateTo("userSettings");
-
-}
-
-pageContainer.addEventListener("CreateUserEvent", async function(evt){
-console.log(evt);
-PostUser(evt.detail);
+document.addEventListener("CreateUserEvent", (evt) =>{
+    PostUser(evt.detail)
 })
 
-pageContainer.addEventListener("EditUserEvent", async function(evt){
-    console.log(evt);
-PatchUser(evt.detail);
+document.addEventListener("EditUserEvent", (evt) =>{
+    PatchUser(evt.detail)
 })
 
-pageContainer.addEventListener("DeleteUserEvent", async function(evt){
-console.log("detected DeleteUserEvent")
-DeleteUser(evt.detail);
+document.addEventListener("DeleteUserEvent", (evt) =>{
+    DeleteUser(evt.detail)
 })
-
-function NavigateTo(view, push){
-if(view){
-    pageContainer.innerHTML = ""
-    pageContainer.appendChild(viewmap[view])
-}
-}

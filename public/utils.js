@@ -1,20 +1,21 @@
 
-export async function sendRequest(url, cfg){
-
-    try{
-        
-        const response = await fetch(url, cfg);
-        const data = await response.json();
-
-        if(!response.ok){
-            throw new Error("Error in fetch")
+export async function sendRequest(method, url, data, contentType){
+        const headers = {
+        method,
+        headers: {
+            'Content-Type': contentType,
         }
+    };
 
-        return Promise.resolve(data);
-
-       
-    } catch(error){
-
-        return Promise.reject(error);
+    if(data){
+        headers.body = JSON.stringify(data)
     }
+
+    console.log("headers: ", headers);
+
+    let response = await fetch(url, headers);
+
+    console.log("response: ", response);
+    return response; 
+
 }
