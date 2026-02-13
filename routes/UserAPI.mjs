@@ -33,8 +33,6 @@ userRouter.post('/createuser', securityAudit, (req, res, next) => {
     }catch(err){
 next(err);
     }
-   
-    
 })
 
 userRouter.patch('/edituser', securityAudit, (req, res, next) => {
