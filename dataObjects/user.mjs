@@ -37,6 +37,8 @@ export function findUser(name, password) {
 export function editUser(id, name, password){
     Users[id].name = name;
     Users[id].psw = password;
+    console.log("edited user: ",Users[id])
+    console.log("replacement password: ", password);
 }
 
 export function deleteUser(id) {

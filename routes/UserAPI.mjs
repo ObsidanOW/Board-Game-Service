@@ -39,8 +39,8 @@ userRouter.patch('/edituser', securityAudit, (req, res, next) => {
         if(!userId){
             throw new Error("404");
         }
-        editUser(userId, req.body.newname, req.body.newpassword);
-        res.send('user edited');
+        editUser(userId, req.body.newname, req.newToken.psw);
+        console.log("matching username and password")
     }
  catch(err){next(err)}
        
