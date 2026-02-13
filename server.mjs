@@ -1,7 +1,6 @@
 import express from "express";
 import ContentRouter from "./routes/ContentAPI.mjs";
 import UserRouter from "./routes/UserAPI.mjs"
-import errorHandler from "./modules/errorHandler.mjs";
 
 
 const port = 8080
@@ -13,7 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/content", ContentRouter)
 app.use("/user", UserRouter)
-app.use(errorHandler);
 app.listen(port, () => {
 })
 
