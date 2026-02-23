@@ -15,45 +15,38 @@ userRouter.post('/login', (req, res, next) => {
 })
 
 userRouter.post('/createuser', securityAudit, (req, res, next) => {
-console.log("endpoint reached")
-    try{
- if(req.body.TOS !== "on" || !req.token) {
-        throw new Error("400");
-    }
-        const newUser = user();
-        newUser.id = generateUserID();
-
-        newUser.name = req.body.name;
-        newUser.psw = req.token.psw;
+    try {
+        const newUser = user(req.body.name, req.token.psw);
         storeUser(newUser);
-        res.send('createUser with id and psw');
+        res.json(JSON.stringify(newUser));
+    } catch {
 
-    }catch(err){
-next(err);
-    }    
+    }
+
+
 })
 
 userRouter.patch('/edituser', securityAudit, (req, res, next) => {
- try{
-        let userId = findUser(req.body.name, req.token.psw);
-        if(!userId){
-            throw new Error("404");
-        }
+    try {
+        let userId = user(req.body.name, req.token.psw);
         editUser(userId, req.body.newname, req.newToken.psw);
-        console.log("matching username and password")
+
     }
- catch(err){next(err)}
-       
-    })
+    catch (err) { next(err) }
+
+})
 
 userRouter.delete('/deleteuser', securityAudit, (req, res, next) => {
-    const userId = findUser(req.body.name, req.token.psw)
-    if (userId) {
-        deleteUser(userId)
-        res.send('user deleted');
-    } else {
-        //TODO wrong input user error 300
+
+
+    try {
+        const userId = user(req.body.name, req.token.psw)
+        res.json(JSON.stringify(userId));
+
     }
+    catch (err) { next(err) }
+
+
 })
 
 
