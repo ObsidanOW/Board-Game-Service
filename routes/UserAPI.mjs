@@ -28,9 +28,7 @@ userRouter.post('/createuser', securityAudit, (req, res, next) => {
 
 userRouter.patch('/edituser', securityAudit, (req, res, next) => {
     try {
-        let userId = user(req.body.name, req.token.psw);
-        editUser(userId, req.body.newname, req.newToken.psw);
-
+        const UserId = user(req.body.name, req.token.psw);
     }
     catch (err) { next(err) }
 
@@ -40,9 +38,7 @@ userRouter.delete('/deleteuser', securityAudit, (req, res, next) => {
 
 
     try {
-        const userId = user(req.body.name, req.token.psw)
-        res.json(JSON.stringify(userId));
-
+        const UserId = user(req.body.name, req.token.psw)
     }
     catch (err) { next(err) }
 
