@@ -1,16 +1,23 @@
 import storageProvider from "./storageProvider.mjs";
-import { Pool, Client } from "pg";
-import { postgreSQLSave } from "./postgresSQL.mjs";
+import { Pool} from "pg";
+import { postgreSQLSave } from "./postgreSQL.mjs";
 import 'dotenv/config'
 
 let instance = null;
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {rejectUnauthorized: false}
+});
+
+postgreSQLSave(pool);
 
 class StorageManager {
     providerEnum;
     constructor() {
         if (instance == null) {
-            instance = storageProvider;
-            this = storageProvider;
+            instance = this;
+            storageProvider = this;
             this.providerEnum;
         } else {
             //Error
@@ -22,7 +29,7 @@ class StorageManager {
 
     save(data) {
         switch (this.providerEnum) {
-            case POSTGRESQL:
+            case StorageProviders.POSTGRESQL:
             postgreSQLSave(pool);
                 break;
         }
@@ -33,7 +40,7 @@ class StorageManager {
     }
 }
 
-export const storageProviders = {
+export const StorageProviders = {
 POSTGRESQL: 0,
 CSV: 1
 }
@@ -43,14 +50,7 @@ export function setStorageProvider(aEnum){
 instance.providerEnum = aEnum;
 console.log("change providerEnum")
     }else{
-        throw Error("500")
+        //throw Error("500")
     }
 }
 
-const pool = new Pool({
-    user: process.env.USER,
-    host: process.env.HOST,
-    database: process.env.DATABASE,
-    password: process.env.PASSWORD,
-    port: process.env.PORT
-});

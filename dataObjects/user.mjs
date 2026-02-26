@@ -1,17 +1,39 @@
-const Users = {};
-//TODO: Let Users object store users.
 
-function user() {
-    return {
-        id: null,
+const Users = {};
+
+
+
+
+function user(id, password, ...context) {
+
+const User = {
+        id: generateUserID(),
         psw: null,
-        name: null
+        name: null,
     };
+
+    switch (context[0]) {
+        case "create":
+            try{
+
+            }catch{
+                
+            }
+            break;
+        case "edit":
+            break;
+        case "delete":
+            break;
+    }
+    return User;
+}
+
+function save(user) {
+    StorageManager.save(user)
 }
 
 export function generateUserID() {
     let id = null;
-
     do {
         id = (Math.random() * Number.MAX_SAFE_INTEGER).toString(16);
     } while (
@@ -26,7 +48,7 @@ export function findUser(name, password) {
             console.log("searching for matching user")
             console.log(Users[user].name + " " + name, ", " + Users[user].psw + " " + password);
             if (Users[user].name === name && Users[user].psw === password) {
-                console.log("found matching user")
+                console.log("found matching user");
                 return (Users[user].id)
             }
         }
@@ -34,10 +56,10 @@ export function findUser(name, password) {
     return (false);
 }
 
-export function editUser(id, name, password){
+export function editUser(id, name, password) {
     Users[id].name = name;
     Users[id].psw = password;
-    console.log("edited user: ",Users[id])
+    console.log("edited user: ", Users[id])
     console.log("replacement password: ", password);
 }
 
