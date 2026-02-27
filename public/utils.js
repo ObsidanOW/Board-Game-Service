@@ -11,11 +11,9 @@ export async function sendRequest(method, url, data, contentType){
         headers.body = JSON.stringify(data)
     }
 
-    console.log("headers: ", headers);
-
     let response = await fetch(url, headers);
-
-    console.log("response: ", response);
+//const responseData = await response.json();
+  //  console.log("response: ", responseData);
     return response; 
 
 }

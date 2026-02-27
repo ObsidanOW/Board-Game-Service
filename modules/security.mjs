@@ -8,7 +8,7 @@ export function securityAudit(req, res, next) {
             req.body.password = "";
 
             let securityToken = createSecurePassToken(psw, process.env.SECRET);
-            req.token = securityToken;
+            req.psw = securityToken;
         }
     } else if (req.method === "PATCH") {
         if (req.body.password) {
@@ -18,19 +18,17 @@ export function securityAudit(req, res, next) {
             req.body.newpassword = "";
 
             let securityToken = createSecurePassToken(psw, process.env.SECRET);
-            req.token = securityToken;
+            req.psw = securityToken;
             let newSecurityToken = createSecurePassToken(newPsw, process.env.SECRET);
-            req.newToken = newSecurityToken
+            req.newPsw = newSecurityToken
         }
     }
     next();
 }
 
 function createSecurePassToken(psw, secret) {
-    return {
-        psw: hashPassword(psw, secret),
-        token: { placeholder: "placeholder" }
-    }
+    return hashPassword(psw, secret)
+    
 }
 
 function hashPassword(psw, secret) {

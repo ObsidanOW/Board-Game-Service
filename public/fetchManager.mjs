@@ -10,8 +10,21 @@ export async function get(url, contentType){
     }
 }
 
-export async function PostUser(Form){
+
+export async function PostUserCreate(Form){
      const url = "/user/createuser"
+    try{
+       const data = await sendRequest("POST", url, Form, HTTP.contentTypes.application.json);
+      
+       return;
+    }catch(err){
+        console.log("catch error", err);
+//TODO errorhandling
+    }
+}
+
+export async function PostUserLogin(Form){
+         const url = "/user/login"
     try{
        const data = await sendRequest("POST", url, Form, HTTP.contentTypes.application.json);
       

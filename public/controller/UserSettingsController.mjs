@@ -17,6 +17,16 @@ function render(target) {
     target.innerHTML = "";
     const FormElement = document.importNode(template.content, true);
 
+    const loginForm = find("#login", FormElement);
+    loginForm.addEventListener("submit", (evt) => {
+        evt.preventDefault();
+        const formData = new FormData(loginForm);
+        const Form = Object.fromEntries(formData.entries());
+
+        const CreateUserEvent = new CustomEvent("LoginUserEvent", { bubbles: true, composed: true, detail: Form });
+        target.dispatchEvent(CreateUserEvent);
+    })
+
     const createForm = find("#create", FormElement);
     createForm.addEventListener("submit", (evt) => {
         evt.preventDefault();

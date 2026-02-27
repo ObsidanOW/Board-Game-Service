@@ -1,27 +1,35 @@
-
 <div>
-    <form id="create"> 
-        <h1>Create user</h1> 
+    <form id="login">
+        <h1>Login</h1>
         <input name="name" value="" placeholder="username" />
         <input name="password" value="" placeholder="password" />
-        <input name="TOS" type="checkbox"  name="tos">
-        <label for="tos">  <a href="https://uiano-my.sharepoint.com/:w:/r/personal/filiplr_uia_no/_layouts/15/Doc.aspx?sourcedoc=%7B6657D567-407F-4503-9D6E-04210709FD86%7D&file=Terms%20of%20Service%20boardgameservice.docx&action=default&mobileredirect=true&DefaultItemOpen=1&wdOrigin=MAIL.SHELL%2CAPPHOME-WEB.FILEBROWSER.RECENT&wdPreviousSession=f3f598b4-2fc8-447c-a419-c36aa5359872&wdPreviousSessionSrc=AppHomeWeb&ct=1770221650664">Agree to Terms of Service</a> </label>
         <button type="submit">Create User</button>
-        </form>
-        
-        <form id="edit"> 
-        <h1>Edit user</h1> 
+    </form>
+
+    <form id="create">
+        <h1>Create user</h1>
+        <input name="name" value="" placeholder="username" />
+        <input name="password" value="" placeholder="password" />
+        <input name="TOS" type="checkbox" name="tos">
+        <label for="tos"> <a
+                href="./ToS.html">Agree
+                to Terms of Service</a> </label>
+        <button type="submit">Create User</button>
+    </form>
+
+    <form id="edit">
+        <h1>Edit user</h1>
         <input name="name" placeholder="username" />
         <input name="password" placeholder="password" />
-        <input name="newname" placeholder="new username"/>
-        <input name="newpassword" placeholder="new password"/>
+        <input name="newname" placeholder="new username" />
+        <input name="newpassword" placeholder="new password" />
         <button type="submit">Edit user</button>
-        </form>
+    </form>
 
-        <form id="delete"> 
-        <h1>Delete user</h1> 
+    <form id="delete">
+        <h1>Delete user</h1>
         <input id="deletename" name="name" placeholder="username" />
         <input id="deletepassword" name="password" placeholder="password" />
         <button id="deletebtn" type="submit">Delete user</button>
-        </form>
+    </form>
 </div>

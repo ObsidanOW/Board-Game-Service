@@ -2,6 +2,9 @@ import express from "express"
 
 import user from "../dataObjects/user.mjs";
 import securityAudit from "../modules/security.mjs";
+import Authenticate from "../modules/Authenticate.mjs";
+import { storageManagerInstance } from "../modules/storageProviders/storageManager.mjs";
+import { userManagerInstance } from "../modules/userManager.mjs";
 
 
 const userRouter = express.Router()
@@ -9,17 +12,21 @@ const userRouter = express.Router()
 userRouter.use(express.json());
 
 
-userRouter.post('/login', (req, res, next) => {
-    //TODO check name and password
-    res.send('LoggedIn');
+userRouter.post('/login', securityAudit, Authenticate, (req, res, next) => {
+    try{
+        console.log("login")
+    res.json((req.token));
+    }catch(err){
+next(err);
+    }
+   
 })
 
 userRouter.post('/createuser', securityAudit, (req, res, next) => {
     try {
-        const newUser = user(req.body.name, req.token.psw);
-        res.json(JSON.stringify(newUser));
-    } catch {
-
+        userManagerInstance.CreateUser(user(req.body.name, req.psw))
+    } catch(err) {
+next(err);
     }
 
 
@@ -27,19 +34,20 @@ userRouter.post('/createuser', securityAudit, (req, res, next) => {
 
 userRouter.patch('/edituser', securityAudit, (req, res, next) => {
     try {
-        const UserId = user(req.body.name, req.token.psw);
+        
     }
     catch (err) { next(err) }
 
 })
 
-userRouter.delete('/deleteuser', securityAudit, (req, res, next) => {
-
-
+userRouter.delete('/deleteuser', securityAudit, Authenticate, (req, res, next) => {
     try {
-        const UserId = user(req.body.name, req.token.psw)
+        console.log("auth token in deleteuser: ", req.token)
+        res.json((req.token));
     }
-    catch (err) { next(err) }
+    catch (err) { 
+        console.log("deleteuser failed", err);
+        next(err) }
 
 
 })

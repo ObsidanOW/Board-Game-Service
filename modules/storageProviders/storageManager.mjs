@@ -1,6 +1,6 @@
 import storageProvider from "./storageProvider.mjs";
 import { Pool, Client } from "pg";
-import { postgreSQLSave, postgreSQLMatch } from "./postgreSQL.mjs";
+import { postgreSQLSaveUser, postgreSQLMatchUserId, postgreSQLMatchUsername} from "./postgreSQL.mjs";
 import 'dotenv/config'
 
 export let storageManagerInstance = null;
@@ -26,21 +26,37 @@ export class StorageManager {
         }
     }
    
-    match(data) {
-        console.log("looking for match");
+    async match(data) {
         switch(this.providerEnum){
             case StorageProviders.POSTGRESQL:
-              return postgreSQLMatch(pool, data)
+              return await postgreSQLMatchUser(pool, data)
         }
     }
 
-    save(data) {
+    async matchName(data) {
+        switch(this.providerEnum){
+            case StorageProviders.POSTGRESQL:
+              return await postgreSQLMatchUsername(pool, data)
+        }
+    }
+
+     async matchId(data) {
+        switch(this.providerEnum){
+            case StorageProviders.POSTGRESQL:
+              return await postgreSQLMatchUserId(pool, data)
+        }
+    }
+
+    async save(data) {
         switch (this.providerEnum) {
             case StorageProviders.POSTGRESQL:
-            postgreSQLSave(pool, data);
+            await postgreSQLSaveUser(pool, data);
                 break;
         }
     }
+
+
+
 
     delete(data) {
 
