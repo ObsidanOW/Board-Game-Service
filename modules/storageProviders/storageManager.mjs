@@ -1,36 +1,43 @@
 import storageProvider from "./storageProvider.mjs";
-import { Pool} from "pg";
-import { postgreSQLSave } from "./postgreSQL.mjs";
+import { Pool, Client } from "pg";
+import { postgreSQLSave, postgreSQLMatch } from "./postgreSQL.mjs";
 import 'dotenv/config'
 
-let instance = null;
+export let storageManagerInstance = null;
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {rejectUnauthorized: false}
 });
 
-postgreSQLSave(pool);
+export const StorageProviders = {
+POSTGRESQL: "POSTGRESQL",
+CSV: "CSV"
+}
 
-class StorageManager {
+export class StorageManager {
     providerEnum;
     constructor() {
-        if (instance == null) {
-            instance = this;
-            storageProvider = this;
-            this.providerEnum;
+        if (storageManagerInstance == null) {
+          storageManagerInstance = this
+          this.providerEnum = process.env.PROVIDER;
         } else {
             //Error
         }
     }
-    setProvider(aEnum) {
-        this.providerEnum = aEnum;
+   
+    match(data) {
+        console.log("looking for match");
+        switch(this.providerEnum){
+            case StorageProviders.POSTGRESQL:
+              return postgreSQLMatch(pool, data)
+        }
     }
 
     save(data) {
         switch (this.providerEnum) {
             case StorageProviders.POSTGRESQL:
-            postgreSQLSave(pool);
+            postgreSQLSave(pool, data);
                 break;
         }
     }
@@ -38,19 +45,9 @@ class StorageManager {
     delete(data) {
 
     }
+
+
 }
 
-export const StorageProviders = {
-POSTGRESQL: 0,
-CSV: 1
-}
-
-export function setStorageProvider(aEnum){
-    if(instance !== null){
-instance.providerEnum = aEnum;
-console.log("change providerEnum")
-    }else{
-        //throw Error("500")
-    }
-}
+new StorageManager()
 

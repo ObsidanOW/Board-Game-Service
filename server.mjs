@@ -4,10 +4,7 @@ import UserRouter from "./routes/UserAPI.mjs"
 
 //import {setUserStorageProvider} from "user"
 
-import { StorageProviders, setStorageProvider} from "./modules/storageProviders/storageManager.mjs"
-
-//Set up persistence of data
-setStorageProvider(StorageProviders.POSTGRESQL)
+import { StorageProviders} from "./modules/storageProviders/storageManager.mjs"
 
 const port = 8080
 const app = express()

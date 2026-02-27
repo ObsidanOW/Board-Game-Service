@@ -1,5 +1,5 @@
 import express from "express"
-import { generateUserID, deleteUser, storeUser, findUser, editUser } from "../dataObjects/user.mjs";
+
 import user from "../dataObjects/user.mjs";
 import securityAudit from "../modules/security.mjs";
 
@@ -17,7 +17,6 @@ userRouter.post('/login', (req, res, next) => {
 userRouter.post('/createuser', securityAudit, (req, res, next) => {
     try {
         const newUser = user(req.body.name, req.token.psw);
-        storeUser(newUser);
         res.json(JSON.stringify(newUser));
     } catch {
 
