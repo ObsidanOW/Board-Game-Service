@@ -23,7 +23,7 @@ class userManager {
         const dbMatch = await storageManagerInstance.matchName(user);
         console.log("dbMatch: ", dbMatch)
         if(!dbMatch){
-            user.id = generateID()
+            user.id = await generateID()
             console.log("no match, a new user can be created")
             storageManagerInstance.save(user)
         }else{

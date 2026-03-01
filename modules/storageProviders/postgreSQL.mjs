@@ -3,7 +3,6 @@ import 'dotenv/config'
 
 export async function postgreSQLSaveUser(pool, user){
     try{
-        console.log(user.psw);
 const User = await pool.query(
     'INSERT INTO "User" (user_id, username, password) VALUES ($1, $2, $3) RETURNING *',
     [user.id, user.name, user.psw]
