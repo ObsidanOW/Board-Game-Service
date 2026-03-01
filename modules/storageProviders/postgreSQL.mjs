@@ -1,4 +1,3 @@
-import { Pool, Client } from "pg";
 import 'dotenv/config'
 
 export async function postgreSQLSaveUser(pool, user){
