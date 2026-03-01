@@ -4,3 +4,5 @@ This application will let the user look through a board game collection they can
 Feature map: https://1drv.ms/x/c/e12ab6d1b7400481/IQB3y7-s7QkwSKV1yM4upd3bAe-e81TH6TD14mJz6r4-GbQ?e=JIgrPZ
 
 Task managment: https://trello.com/b/NjEzjmKj/app2-brettspill-utlan
+
+Remote URL: https://board-game-service-demo.onrender.com/
