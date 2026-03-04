@@ -7,11 +7,12 @@ export const errEnum = {
     usernameIsTaken: "usernameIsTaken",
     serverError: "serverError",
     databaseError: "databaseError",
+
 }
 
 export const LanguageProviders = {
-    ENGLISH,
-    NORWEGIAN,
+    ENGLISH: "ENGLISH",
+    NORWEGIAN: "NORWEGIAN",
 }
 
 export function wrongCredentials(languageEnum) {
@@ -24,7 +25,7 @@ export function wrongCredentials(languageEnum) {
 
 }
 
-export function nonexistentGame() {
+export function nonexistentGame(languageEnum) {
     switch (languageEnum) {
         case LanguageProviders.ENGLISH:
             return EnglishMessages.nonExistentGame();
@@ -34,7 +35,7 @@ export function nonexistentGame() {
 
 }
 
-export function  usernameIsTaken(){
+export function  usernameIsTaken(languageEnum){
    switch (languageEnum) {
         case LanguageProviders.ENGLISH:
             return EnglishMessages.usernameIsTaken();
@@ -43,11 +44,21 @@ export function  usernameIsTaken(){
     }  
 }
 
-export function serverError() {
+export function serverError(languageEnum) {
     switch (languageEnum) {
         case LanguageProviders.ENGLISH:
             return EnglishMessages.serverError();
         case LanguageProviders.NORWEGIAN:
             return NorwegianMessages.serverError();
+    }
+}
+
+export function databaseError(languageEnum) {
+    console.log(languageEnum);
+    switch (languageEnum) {
+        case LanguageProviders.ENGLISH:
+            return EnglishMessages.databaseError();
+        case LanguageProviders.NORWEGIAN:
+            return NorwegianMessages.databaseError();
     }
 }

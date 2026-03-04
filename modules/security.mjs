@@ -1,7 +1,11 @@
 import { createHmac } from 'node:crypto';
 import 'dotenv/config'
+import { errEnum } from './languageProvider/errorMessages.mjs';
 
 export function securityAudit(req, res, next) {
+    if(req.body.name === "" || req.body.password === ""){
+        throw new Error(errEnum.wrongCredentials);
+    }
     if (req.method === "POST" || req.method === "DELETE") {
         if (req.body.password) {
             let psw = req.body.password;

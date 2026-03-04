@@ -1,10 +1,12 @@
 import express from "express"
 
 import user from "../dataObjects/user.mjs";
-import securityAudit from "../modules/Security/security.mjs";
+import securityAudit from "../modules/security.mjs";
 import Authenticate from "../modules/Authenticate.mjs";
 import { userManagerInstance } from "../modules/userManager.mjs";
 import getLanguage from "../modules/languageProvider/getLanguage.mjs";
+import errorHandler from "../modules/errorHandler.mjs";
+import { errEnum } from "../modules/languageProvider/errorMessages.mjs";
 
 
 
@@ -15,22 +17,23 @@ userRouter.use(express.json());
 userRouter.use(getLanguage);
 
 
+
 userRouter.post('/login', securityAudit, Authenticate, (req, res, next) => {
     try {
-     
         if (req.token) {
             res.json((req.token));
+        }else{
+            throw new Error(errEnum.wrongCredentials);
         }
-
     } catch (err) {
         next(err);
     }
 
 })
 
-userRouter.post('/createuser', securityAudit, (req, res, next) => {
+userRouter.post('/createuser', securityAudit, async (req, res, next) => {
     try {
-        userManagerInstance.CreateUser(user(req.body.name, req.psw))
+        await userManagerInstance.CreateUser(user(req.body.name, req.psw))
     } catch (err) {
         next(err);
     }
@@ -59,5 +62,6 @@ userRouter.delete('/deleteuser', securityAudit, Authenticate, (req, res, next) =
 
 })
 
+userRouter.use(errorHandler);
 
 export default userRouter;

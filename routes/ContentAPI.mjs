@@ -1,5 +1,5 @@
 import express from "express"
-import sanitizeString from "../modules/Security/SanitizeString.mjs"
+import sanitizeString from "../modules/InputCleanup/SanitizeString.mjs"
 const ContentRouter = express.Router()
 
 

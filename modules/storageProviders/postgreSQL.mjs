@@ -1,5 +1,5 @@
 import storageProvider from './storageProvider.mjs';
-import {wrongCredentials, serverError, errEnum} from "../languageProvider/errorMessages.mjs"
+import {errEnum} from "../languageProvider/errorMessages.mjs"
 import 'dotenv/config'
 
 let postgreSQL = {

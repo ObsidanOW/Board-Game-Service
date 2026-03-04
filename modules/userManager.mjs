@@ -21,14 +21,10 @@ class userManager {
 
     async CreateUser(user){
         const dbMatch = await storageManagerInstance.matchName(user);
-        console.log("dbMatch: ", dbMatch)
         if(!dbMatch){
             user.id = await generateID()
-            console.log("no match, a new user can be created")
-            storageManagerInstance.save(user)
+            await storageManagerInstance.save(user)
         }else{
-            //User already exists
-            console.log("user already exists")
         }
     }
 }

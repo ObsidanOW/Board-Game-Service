@@ -1,35 +1,28 @@
 import { errEnum, serverError } from "./languageProvider/errorMessages.mjs"
-import { nonexistentGame, wrongCredentials, usernameIsTaken, wrongCredentials} from "./languageProvider/errorMessages.mjs";
+import { nonexistentGame, wrongCredentials, usernameIsTaken, databaseError, } from "./languageProvider/errorMessages.mjs";
 
 const errorHandler = (err, req, res, next) => {
-let errorMessage;
 
     switch (err.message){
         case errEnum.nonExistentGame:
-            errorMessage = nonexistentGame(req.language);
+            res.status(500).json({ error: nonexistentGame(req.language)})
             break;
         case errEnum.serverError:
-            res.status(500).render('error', { message: serverError(req.language) ,error: err })
+            res.status(500).json({ error: serverError(req.language)})
             break;
         case errEnum.usernameIsTaken:
-            errorMessage = usernameIsTaken(req.language);
+            res.status(500).json({ error: usernameIsTaken(req.language)})
             break;
         case errEnum.wrongCredentials:
-            errorMessage = wrongCredentials(req.language);
+            res.status(500).json({ error: wrongCredentials(req.language)})
             break;
         case errEnum.databaseError:
-            errorMessage = databaseError(req.language);
+            res.status(500).json({ error: databaseError(req.language)})
              
             break;
-        
     }
-   
-   
-   
-//TODO: find out what this does:
-    /*if (res.headersSent) {
-        return next(err)
-    }*/
+console.log("switched through err.message: ", err.message, " referenceError: ", databaseError(req.language))   
+
 }
 
 export default errorHandler;
