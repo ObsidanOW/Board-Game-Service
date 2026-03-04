@@ -1,6 +1,7 @@
 import express from "express";
 import ContentRouter from "./routes/ContentAPI.mjs";
-import UserRouter from "./routes/UserAPI.mjs"
+import UserRouter from "./routes/UserAPI.mjs";
+import getLanguage from "./modules/languageProvider/getLanguage.mjs";
 
 const port = 8080
 const app = express()
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/content", ContentRouter)
 app.use("/user", UserRouter)
+app.use(getLanguage);
 app.listen(port, () => {
 })
 

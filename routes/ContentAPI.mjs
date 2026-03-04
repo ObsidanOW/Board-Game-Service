@@ -1,5 +1,5 @@
 import express from "express"
-import sanitizeSearch from "../modules/SanitizeSearch.mjs"
+import sanitizeString from "../modules/Security/SanitizeString.mjs"
 const ContentRouter = express.Router()
 
 
@@ -8,13 +8,9 @@ const BoardGamesForTesting = [
   {id: 1001, Status: 2, BelongsTo: 1, title: "Century: Big box"}
 ]
 
-ContentRouter.get('/home', sanitizeSearch, (req, res, next) => {
+ContentRouter.get('/home', sanitizeString, (req, res, next) => {
 
-  if(req.Sanitized){
-    res.status(200);
-res.send(req.Sanitized);
 
-  }
  res.send('BoardGameList');
 })
 

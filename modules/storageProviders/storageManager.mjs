@@ -19,48 +19,46 @@ export const StorageProviders = {
 export class StorageManager {
     providerEnum;
     constructor() {
-        if (storageManagerInstance == null) {
-            storageManagerInstance = this
+        if (storageManagerInstance !== null) {
+            return storageManagerInstance
+        } else {
             this.providerEnum = process.env.PROVIDER;
             this.provider = storageProvider;
-        } else {
-            
+
+            switch (this.providerEnum) {
+                case StorageProviders.POSTGRESQL:
+                    this.provider = postgeSQL;
+                    break;
+            }
+            storageManagerInstance = this
         }
 
-        switch (this.providerEnum) {
-            case StorageProviders.POSTGRESQL:
-                this.provider = postgeSQL;
-                break;
-        }
     }
-
     async matchUser(data) {
-       return storageProvider.matchUser(data, pool);
+        return this.provider.matchUser(data, pool);
     }
 
     async matchName(data) {
-        return storageProvider.matchName(data, pool);
+        return this.provider.matchName(data, pool);
     }
 
     async matchId(data) {
-        return storageProvider.matchID(data, pool);
+        return this.provider.matchID(data, pool);
     }
 
     async save(data) {
-        return storageProvider.save(data, pool);
+        return this.provider.save(data, pool);
     }
-
-
-
-
-
 
     delete(data) {
 
     }
-
-
 }
+
+
+
+
+
 
 new StorageManager()
 

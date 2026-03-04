@@ -1,4 +1,5 @@
 import storageProvider from './storageProvider.mjs';
+import {wrongCredentials, serverError, errEnum} from "../languageProvider/errorMessages.mjs"
 import 'dotenv/config'
 
 let postgreSQL = {
@@ -6,18 +7,24 @@ let postgreSQL = {
 
     save: async (pool, user) => {
         try {
+            if(pool === undefined || user === undefined){
+                throw new Error(errEnum.serverError);
+            }
             const User = await pool.query(
                 'INSERT INTO "User" (user_id, username, password) VALUES ($1, $2, $3) RETURNING *',
                 [user.id, user.name, user.psw]
             );
         } catch (err) {
-
+            throw new Error(errEnum.databaseError);
         }
     },
 
 
     matchID: async (pool, user) => {
         try {
+              if(pool === undefined || user === undefined){
+                throw new Error(errEnum.serverError);
+            }
             const userData = await pool.query(
                 'SELECT user_id,username,password FROM "User" WHERE user_id = $1',
                 [user.id]

@@ -6,11 +6,12 @@ async function Authenticate(req, res, next) {
         const Login = new user(req.body.name, req.psw);
         console.log("Login userobject: ", Login);
         const token = await userManagerInstance.LoginUser(Login);
+        console.log("token: ", token);
         req.token = token;
         console.log("got token in auth: ", token)
         next();
     } catch (err) {
-        throw new Error(err);
+       
     }
 }
 

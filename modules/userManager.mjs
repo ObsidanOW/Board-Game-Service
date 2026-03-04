@@ -12,7 +12,7 @@ class userManager {
 
 
     async LoginUser(user) {
-        const dbMatch = await storageManagerInstance.match(user)
+        const dbMatch = await storageManagerInstance.matchUser(user)
         if(dbMatch !== null && dbMatch !== undefined){
             const token =  {id: dbMatch.user_id, name: dbMatch.username, psw: dbMatch.password}
             return token

@@ -27,7 +27,7 @@ export async function PostUserLogin(Form){
          const url = "/user/login"
     try{
        const data = await sendRequest("POST", url, Form, HTTP.contentTypes.application.json);
-      
+      console.log("response", data);
        return;
     }catch(err){
         console.log("catch error", err);
