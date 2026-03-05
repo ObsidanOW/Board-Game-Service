@@ -6,8 +6,7 @@ export const errEnum = {
     nonExistentGame: "nonExistentGame",
     usernameIsTaken: "usernameIsTaken",
     serverError: "serverError",
-    databaseError: "databaseError",
-
+    databaseError: "databaseError"
 }
 
 export const LanguageProviders = {

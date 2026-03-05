@@ -15,7 +15,7 @@ export async function PostUserCreate(Form){
      const url = "/user/createuser"
     try{
        const data = await sendRequest("POST", url, Form, HTTP.contentTypes.application.json);
-      
+      console.log(data.json)
        return;
     }catch(err){
         console.log("catch error", err);
@@ -27,7 +27,7 @@ export async function PostUserLogin(Form){
          const url = "/user/login"
     try{
        const data = await sendRequest("POST", url, Form, HTTP.contentTypes.application.json);
-      console.log("response", data);
+      console.log("response", data.json);
        return;
     }catch(err){
         console.log("catch error", err);

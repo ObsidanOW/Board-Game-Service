@@ -5,7 +5,7 @@ import 'dotenv/config'
 let postgreSQL = {
 
 
-    save: async (pool, user) => {
+    save: async (user, pool) => {
         try {
             if(pool === undefined || user === undefined){
                 throw new Error(errEnum.serverError);
@@ -15,12 +15,12 @@ let postgreSQL = {
                 [user.id, user.name, user.psw]
             );
         } catch (err) {
-            throw new Error(errEnum.databaseError);
+    
         }
     },
 
 
-    matchID: async (pool, user) => {
+    matchID: async (user, pool) => {
         try {
               if(pool === undefined || user === undefined){
                 throw new Error(errEnum.serverError);
@@ -40,7 +40,7 @@ let postgreSQL = {
     },
 
 
-matchName: async (pool, user) => {
+matchName: async (user, pool) => {
 
         try {
             const userData = await pool.query(
@@ -57,7 +57,7 @@ matchName: async (pool, user) => {
         }
     },
 
-matchUser: async (pool, user) => {
+matchUser: async (user, pool) => {
         try {
             const userData = await pool.query(
                 'SELECT user_id,username,password FROM "User" WHERE username = $1 AND password = $2',
@@ -73,7 +73,7 @@ matchUser: async (pool, user) => {
         }
     },
 
-deleteUser: async (pool, user) => {
+deleteUser: async (user, pool) => {
 
     }
 }

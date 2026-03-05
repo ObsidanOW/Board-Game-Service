@@ -2,7 +2,7 @@ import { errEnum, serverError } from "./languageProvider/errorMessages.mjs"
 import { nonexistentGame, wrongCredentials, usernameIsTaken, databaseError, } from "./languageProvider/errorMessages.mjs";
 
 const errorHandler = (err, req, res, next) => {
-
+console.log(err.message);
     switch (err.message){
         case errEnum.nonExistentGame:
             res.status(500).json({ error: nonexistentGame(req.language)})
@@ -21,8 +21,7 @@ const errorHandler = (err, req, res, next) => {
              
             break;
     }
-console.log("switched through err.message: ", err.message, " referenceError: ", databaseError(req.language))   
-
+console.log("switched through err.message: ", err.message)
 }
 
 export default errorHandler;

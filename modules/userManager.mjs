@@ -1,4 +1,6 @@
+import { errEnum } from "./languageProvider/errorMessages.mjs";
 import { storageManagerInstance } from "./storageProviders/storageManager.mjs";
+import user from "../dataObjects/user.mjs";
 
 export let userManagerInstance = null;
 
@@ -12,19 +14,23 @@ class userManager {
 
 
     async LoginUser(user) {
+    
         const dbMatch = await storageManagerInstance.matchUser(user)
-        if(dbMatch !== null && dbMatch !== undefined){
-            const token =  {id: dbMatch.user_id, name: dbMatch.username, psw: dbMatch.password}
+        if (dbMatch !== null && dbMatch !== undefined) {
+            const token = { id: dbMatch.user_id, name: dbMatch.username, psw: dbMatch.password }
             return token
-        }    
+        }
     }
 
-    async CreateUser(user){
+    async CreateUser(user) {
         const dbMatch = await storageManagerInstance.matchName(user);
-        if(!dbMatch){
+        console.log("look for match: ", user);
+        if (!dbMatch) {
             user.id = await generateID()
             await storageManagerInstance.save(user)
-        }else{
+        } else {
+            console.log("name matched already existing user");
+            throw new Error(errEnum.usernameIsTaken);
         }
     }
 }
