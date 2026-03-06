@@ -21,7 +21,7 @@ userRouter.use(getLanguage);
 userRouter.post('/login', securityAudit, Authenticate, (req, res, next) => {
     try {
         if (req.token) {
-            res.json((req.token));
+            res.json(req.token);
         }else{
             throw new Error(errEnum.wrongCredentials);
         }
@@ -34,6 +34,7 @@ userRouter.post('/login', securityAudit, Authenticate, (req, res, next) => {
 userRouter.post('/createuser', securityAudit, async (req, res, next) => {
     try {
         await userManagerInstance.CreateUser(user(req.body.name, req.psw))
+        res.status(200).json({result: "created user"});
     } catch (err) {
         next(err);
     }

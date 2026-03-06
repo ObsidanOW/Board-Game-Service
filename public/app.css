@@ -5,3 +5,14 @@ h1 {
 body {
     background-color: antiquewhite;
 }
+
+input{
+    min-width: 48px;
+    min-height: 30px;
+}
+
+button{
+    min-width: 48px;
+    min-height: 30px;
+}
+

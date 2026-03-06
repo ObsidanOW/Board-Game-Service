@@ -15,8 +15,10 @@ export async function PostUserCreate(Form){
      const url = "/user/createuser"
     try{
        const data = await sendRequest("POST", url, Form, HTTP.contentTypes.application.json);
-      console.log(data.json)
-       return;
+      
+      const json = await data.json();
+      console.log(json);
+       return data;
     }catch(err){
         console.log("catch error", err);
 //TODO errorhandling
@@ -28,10 +30,9 @@ export async function PostUserLogin(Form){
     try{
        const data = await sendRequest("POST", url, Form, HTTP.contentTypes.application.json);
       console.log("response", data.json);
-       return;
+       return data.json;
     }catch(err){
         console.log("catch error", err);
-//TODO errorhandling
     }
 }
 
