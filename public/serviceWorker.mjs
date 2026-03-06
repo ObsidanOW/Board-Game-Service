@@ -1,22 +1,29 @@
 const CACHE_NAME = "cache";
 const cacheFiles = [
-    '/',
-    '/index.html',
-    'app.mjs',
-    'app.css'
+  '/',
+  '/index.html',
+  '/app.mjs',
+  '/app.css',
 ]
 
 self.addEventListener('install', event => {
+  console.log("install");
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(cacheFiles))
-  );
+      .then(cache => cache.addAll(cacheFiles)).catch(() => {
+        throw new Error("failed setting up static cache");
+      })
+
+  )
 });
 
 self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request).then(response => response || fetch(event.request)).catch(() => {
-          console.log("offline mode")
-        })
-    )
+  console.log("listened fetch")
+  event.respondWith(
+    caches.match(event.request).then(response => response || fetch(event.request)).catch(() => {
+      if (event.request.mode === "navigate") {
+        return new Response(null, {status:503, statusText: "can't connect to internet and or server"})
+      }
+    })
+  )
 })
