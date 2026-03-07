@@ -1,0 +1,23 @@
+{
+    "errorCodes": {
+        "wrongCredentials": "wrongCredentials",
+        "nonExistentGame": "Game does not exist",
+        "usernameIsTaken": "Username is taken",
+        "serverError": "Server error",
+        "databaseError": "Database error"
+    },
+    "feedback": {
+        "userCreated": "User created",
+        "succesfulLogin": "Logged in succesfully",
+        "succesfulEdit": "Logged in succesfully",
+        "succesfulDelete": "Logged in succesfully"
+    },
+    "HTML": {
+        "login": "Login",
+        "createUser": "Create user",
+        "editUser": "Edit user",
+        "deleteUser": "Delete user"
+    }
+}
+   
+ 

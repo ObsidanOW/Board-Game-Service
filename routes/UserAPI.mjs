@@ -6,7 +6,7 @@ import Authenticate from "../modules/Authenticate.mjs";
 import { userManagerInstance } from "../modules/userManager.mjs";
 import getLanguage from "../modules/languageProvider/getLanguage.mjs";
 import errorHandler from "../modules/errorHandler.mjs";
-import { errEnum } from "../modules/languageProvider/errorMessages.mjs";
+import { errEnum } from "../modules/languageProvider/messageHandler.mjs";
 
 
 

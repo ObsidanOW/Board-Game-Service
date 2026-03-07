@@ -1,27 +1,14 @@
-import { errEnum, serverError } from "./languageProvider/errorMessages.mjs"
-import { nonexistentGame, wrongCredentials, usernameIsTaken, databaseError, } from "./languageProvider/errorMessages.mjs";
+import { i18n, errEnum, Languages } from "./languageProvider/messageHandler.mjs";
+
 
 const errorHandler = (err, req, res, next) => {
-console.log(err.message);
-    switch (err.message){
-        case errEnum.nonExistentGame:
-            res.status(500).json({ error: nonexistentGame(req.language)})
-            break;
-        case errEnum.serverError:
-            res.status(500).json({ error: serverError(req.language)})
-            break;
-        case errEnum.usernameIsTaken:
-            res.status(500).json({ error: usernameIsTaken(req.language)})
-            break;
-        case errEnum.wrongCredentials:
-            res.status(500).json({ error: wrongCredentials(req.language)})
-            break;
-        case errEnum.databaseError:
-            res.status(500).json({ error: databaseError(req.language)})
-             
-            break;
-    }
-console.log("switched through err.message: ", err.message)
+    console.log(err.message);
+    const message = i18n[req.language]?.errorCodes?.[err.message] || "UNKNOWN ERROR"
+    console.log("message: ", message, " i18n[req.language]: ", i18n[req.language]);
+
+    res.status(500).json({ error: message })
+
+    console.log("switched through err.message: ", err.message)
 }
 
 export default errorHandler;

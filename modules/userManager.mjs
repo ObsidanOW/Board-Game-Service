@@ -1,6 +1,5 @@
-import { errEnum } from "./languageProvider/errorMessages.mjs";
+import { errEnum } from "./languageProvider/messageHandler.mjs";
 import { storageManagerInstance } from "./storageProviders/storageManager.mjs";
-import user from "../dataObjects/user.mjs";
 
 export let userManagerInstance = null;
 

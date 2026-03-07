@@ -1,0 +1,14 @@
+{
+    "errorCodes": {
+        "wrongCredentials": "Feil brukernavn og eller passord",
+        "nonExistentGame": "Game does not exist",
+        "usernameIsTaken": "Username is taken",
+        "serverError": "Server error",
+        "databaseError": "Database error"
+    },
+    "feedback": {
+        "confirmation": "Action succesful"
+    }
+}
+   
+ 

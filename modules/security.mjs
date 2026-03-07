@@ -1,6 +1,6 @@
 import { createHmac } from 'node:crypto';
 import 'dotenv/config'
-import { errEnum } from './languageProvider/errorMessages.mjs';
+import { errEnum } from './languageProvider/messageHandler.mjs';
 
 export function securityAudit(req, res, next) {
     if(req.body.name === "" || req.body.password === ""){
