@@ -58,6 +58,39 @@ function render(target) {
     })
 
 
+    const inputNames = ["username", "password", "newname", "newpassword"]
+
+    for (let i = 0; i < inputNames.length; i++) {
+        const inputName = find(`input[name="${inputNames[i]}"]`, FormElement);
+        if (inputName.length === undefined) {
+            inputName.placeholder = "navn";
+        } else {
+            for (let p = 0; p < inputName.length; p++) {
+                inputName[p].placeholder = "navn"
+            }
+        }
+    }
+
+    const headerIDs = ["loginHeader", "createHeader", "editHeader", "deleteHeader"];
+
+    for (let i = 0; i < headerIDs.length; i++) {
+        const headerText = find(`#${headerIDs[i]}`, FormElement)
+        headerText.innerText = "navn";
+    }
+
+    const buttonIDs = ["loginbtn", "createbtn", "editbtn","deletebtn"];
+
+    for(let i = 0; i < buttonIDs.length; i++){
+const buttonText = find(`#${buttonIDs[i]}`, FormElement);
+buttonText.innerText = "navn";
+
+    }
+
+
+
+
+
+
     target.appendChild(FormElement)
 }
 

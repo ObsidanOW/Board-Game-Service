@@ -13,6 +13,10 @@
         "succesfulDelete": "Logged in succesfully"
     },
     "HTML": {
+        "username": "username",
+        "password:": "password",
+        "newname": "new username",
+        "newpassword": "new password",
         "login": "Login",
         "createUser": "Create user",
         "editUser": "Edit user",
