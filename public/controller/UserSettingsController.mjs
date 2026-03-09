@@ -7,9 +7,6 @@ let viewName = "UserSettingsView";
 const template = await loadView(viewName);
 
 function UserSettingsController(target, language) {
-
-    let __target = target;
-    console.log(language);
     render(target, language)
 }
 
