@@ -10,19 +10,26 @@ const itemTemplate = await loadView(viewItemName)
 function BoardgameListController(target, games = []) {
     const __target = target;
 
+    games.onDetail = (id) => {
+        //TOOD navigation event that does a get with the appropriate id
+    }
+
+
     render(__target, games)
 }
 
 function render(target, games) {
-target.innerHTML = ""
+    target.innerHTML = ""
 
     for (const game of games) {
-const gameElement = document.importNode(itemTemplate.content, true)
-gameButton = find("button", gameElement);
+        const gameElement = document.importNode(itemTemplate.content, true);
+        find("h3", gameElement).value = game.title;
+        
 
-gameButton.addEventListener("click", () => {
-
-})
+        gameButton = find("button", gameElement);
+        gameButton.addEventListener("click", () => {
+            onDetail(game.id)
+        })
     }
 }
 

@@ -1,5 +1,7 @@
 import express from "express"
 import sanitizeString from "../modules/InputCleanup/SanitizeString.mjs"
+import { storageManagerInstance } from "../modules/storageProviders/storageManager.mjs"
+
 const ContentRouter = express.Router()
 
 
@@ -9,9 +11,12 @@ const BoardGamesForTesting = [
 ]
 
 ContentRouter.get('/home', sanitizeString, (req, res, next) => {
+try{
+   const games = storageManagerInstance.
+   res.status(200).json();
+}catch(err){
 
-
- res.send('BoardGameList');
+}
 })
 
 

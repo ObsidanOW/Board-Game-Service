@@ -50,9 +50,14 @@ export class StorageManager {
         return this.provider.save(data, pool);
     }
 
+    async Games(data){
+        return this.provider.save(pool);
+    }
+
     delete(data) {
 
     }
+
 }
 
 

@@ -1,4 +1,4 @@
-import {errEnum} from "../languageProvider/messageHandler.mjs"
+import { errEnum } from "../languageProvider/messageHandler.mjs"
 import 'dotenv/config'
 
 let postgreSQL = {
@@ -6,7 +6,7 @@ let postgreSQL = {
 
     save: async (user, pool) => {
         try {
-            if(pool === undefined || user === undefined){
+            if (pool === undefined || user === undefined) {
                 throw new Error(errEnum.serverError);
             }
             const User = await pool.query(
@@ -14,14 +14,14 @@ let postgreSQL = {
                 [user.id, user.name, user.psw]
             );
         } catch (err) {
-    
+
         }
     },
 
 
     matchID: async (user, pool) => {
         try {
-              if(pool === undefined || user === undefined){
+            if (pool === undefined || user === undefined) {
                 throw new Error(errEnum.serverError);
             }
             const userData = await pool.query(
@@ -39,7 +39,7 @@ let postgreSQL = {
     },
 
 
-matchName: async (user, pool) => {
+    matchName: async (user, pool) => {
 
         try {
             const userData = await pool.query(
@@ -56,7 +56,7 @@ matchName: async (user, pool) => {
         }
     },
 
-matchUser: async (user, pool) => {
+    matchUser: async (user, pool) => {
         try {
             const userData = await pool.query(
                 'SELECT user_id,username,password FROM "User" WHERE username = $1 AND password = $2',
@@ -65,7 +65,21 @@ matchUser: async (user, pool) => {
             if (userData.rows[0]) {
                 return userData.rows[0];
             } else {
-                console.log("no match")
+
+            }
+        } catch (err) {
+
+        }
+    },
+    Games: async (pool) => {
+        try {
+            const gameData = await pool.query(
+
+            )
+            if (gameData.rows[0]) {
+                return gameData.rows
+            } else {
+
             }
         } catch (err) {
 
