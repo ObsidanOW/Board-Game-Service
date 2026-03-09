@@ -10,6 +10,18 @@ export async function get(url, contentType){
     }
 }
 
+export async function GetUserPage(){
+    console.log("GetUserPage")
+    const url ="/user/";
+    try{
+        const data = await sendRequest("GET", url, null, null)
+        const json = await data.json();
+        console.log(json);
+        return json;
+    }catch(err){
+throw err;
+    }
+}
 
 export async function PostUserCreate(Form){
      const url = "/user/createuser"

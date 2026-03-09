@@ -2,13 +2,26 @@
     "errorCodes": {
         "wrongCredentials": "Feil brukernavn og eller passord",
         "nonExistentGame": "Game does not exist",
-        "usernameIsTaken": "Username is taken",
-        "serverError": "Server error",
-        "databaseError": "Database error"
+        "usernameIsTaken": "Brukernavn er tatt",
+        "serverError": "Server feil",
+        "databaseError": "Database feil"
     },
     "feedback": {
-        "confirmation": "Action succesful"
+        "confirmation": "Handling utført",
+        "succesfulLogin": "Logget inn",
+        "succesfulEdit": "Bruker redigert",
+        "succesfulDelete": "Slettet bruker"
+    },
+    "HTML": {
+        "user": {
+            "username": "brukernavn",
+            "password": "passord",
+            "newname": "nytt brukernavn",
+            "newpassword": "nytt passord",
+            "login": "Logg in",
+            "createUser": "Lag bruker",
+            "editUser": "Rediger bruker",
+            "deleteUser": "Slett bruker"
+        }
     }
 }
-   
- 

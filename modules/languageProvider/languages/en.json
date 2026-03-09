@@ -9,19 +9,19 @@
     "feedback": {
         "userCreated": "User created",
         "succesfulLogin": "Logged in succesfully",
-        "succesfulEdit": "Logged in succesfully",
-        "succesfulDelete": "Logged in succesfully"
+        "succesfulEdit": "Succesful edit",
+        "succesfulDelete": "Succesful delete"
     },
     "HTML": {
-        "username": "username",
-        "password:": "password",
-        "newname": "new username",
-        "newpassword": "new password",
-        "login": "Login",
-        "createUser": "Create user",
-        "editUser": "Edit user",
-        "deleteUser": "Delete user"
+        "user": {
+            "username": "username",
+            "password": "password",
+            "newname": "new username",
+            "newpassword": "new password",
+            "login": "Login",
+            "createUser": "Create user",
+            "editUser": "Edit user",
+            "deleteUser": "Delete user"
+        }
     }
 }
-   
- 

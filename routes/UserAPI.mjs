@@ -7,6 +7,7 @@ import { userManagerInstance } from "../modules/userManager.mjs";
 import getLanguage from "../modules/languageProvider/getLanguage.mjs";
 import errorHandler from "../modules/errorHandler.mjs";
 import { errEnum } from "../modules/languageProvider/messageHandler.mjs";
+import { i18n } from "../modules/languageProvider/messageHandler.mjs";
 
 
 
@@ -16,13 +17,20 @@ const userRouter = express.Router()
 userRouter.use(express.json());
 userRouter.use(getLanguage);
 
-
+userRouter.get('/', getLanguage, (req, res, next) => {
+    try {
+        res.status(200).json(i18n[req.language]?.HTML.user)
+        console.log(i18n[req.language]?.HTML.user);
+    } catch (err) {
+        next(err)
+    }
+})
 
 userRouter.post('/login', securityAudit, Authenticate, (req, res, next) => {
     try {
         if (req.token) {
-            res.json(req.token);
-        }else{
+            res.status(200).json(req.token);
+        } else {
             throw new Error(errEnum.wrongCredentials);
         }
     } catch (err) {
@@ -34,7 +42,7 @@ userRouter.post('/login', securityAudit, Authenticate, (req, res, next) => {
 userRouter.post('/createuser', securityAudit, async (req, res, next) => {
     try {
         await userManagerInstance.CreateUser(user(req.body.name, req.psw))
-        res.status(200).json({result: "created user"});
+        res.status(200).json({ result: "created user" });
     } catch (err) {
         next(err);
     }

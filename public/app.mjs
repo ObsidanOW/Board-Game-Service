@@ -1,7 +1,10 @@
 import UserSettingsController from "./controller/UserSettingsController.mjs";
-import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser } from "./fetchManager.mjs";
+import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage } from "./fetchManager.mjs";
 
-new UserSettingsController(document.body);
+const language = await GetUserPage();
+new UserSettingsController(document.body, language);
+
+
 
 document.addEventListener("LoginUserEvent", (evt) => {
   PostUserLogin(evt.detail)

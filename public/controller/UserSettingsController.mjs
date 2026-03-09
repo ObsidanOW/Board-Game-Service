@@ -6,13 +6,14 @@ let viewName = "UserSettingsView";
 
 const template = await loadView(viewName);
 
-function UserSettingsController(target) {
+function UserSettingsController(target, language) {
 
     let __target = target;
-    render(target)
+    console.log(language);
+    render(target, language)
 }
 
-function render(target) {
+function render(target, language) {
 
     target.innerHTML = "";
     const FormElement = document.importNode(template.content, true);
@@ -63,34 +64,29 @@ function render(target) {
     for (let i = 0; i < inputNames.length; i++) {
         const inputName = find(`input[name="${inputNames[i]}"]`, FormElement);
         if (inputName.length === undefined) {
-            inputName.placeholder = "navn";
+            inputName.placeholder = language[inputNames[i]];
         } else {
             for (let p = 0; p < inputName.length; p++) {
-                inputName[p].placeholder = "navn"
+                inputName[p].placeholder = language[inputNames[i]];
             }
         }
     }
+
+    const textCodes = ["login", "createUser", "editUser", "deleteUser"];
 
     const headerIDs = ["loginHeader", "createHeader", "editHeader", "deleteHeader"];
 
     for (let i = 0; i < headerIDs.length; i++) {
         const headerText = find(`#${headerIDs[i]}`, FormElement)
-        headerText.innerText = "navn";
+        headerText.innerText = language[textCodes[i]];
     }
 
-    const buttonIDs = ["loginbtn", "createbtn", "editbtn","deletebtn"];
+    const buttonIDs = ["loginbtn", "createbtn", "editbtn", "deletebtn"];
 
-    for(let i = 0; i < buttonIDs.length; i++){
-const buttonText = find(`#${buttonIDs[i]}`, FormElement);
-buttonText.innerText = "navn";
-
+    for (let i = 0; i < buttonIDs.length; i++) {
+        const buttonText = find(`#${buttonIDs[i]}`, FormElement);
+        buttonText.innerText = language[textCodes[i]];
     }
-
-
-
-
-
-
     target.appendChild(FormElement)
 }
 
