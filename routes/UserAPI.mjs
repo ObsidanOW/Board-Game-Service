@@ -17,8 +17,9 @@ const userRouter = express.Router()
 userRouter.use(express.json());
 userRouter.use(getLanguage);
 
-userRouter.get('/', getLanguage, (req, res, next) => {
+userRouter.get('/', (req, res, next) => {
     try {
+        console.log("root user");
         res.status(200).json(i18n[req.language]?.HTML.user)
     } catch (err) {
         next(err)

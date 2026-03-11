@@ -1,17 +1,18 @@
 import BoardgameListController from "./controller/BoardgameListController.mjs";
 import UserSettingsController from "./controller/UserSettingsController.mjs";
-import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage } from "./fetchManager.mjs";
+import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames } from "./fetchManager.mjs";
 
 const games = await GetGames();
-new BoardgameListController(document.body, games, language)
+BoardgameListController(document.body, games)
 
 document.addEventListener("GoToDetail", async (evt) => {
 const language = await GetGame(id);
 })
 
 document.addEventListener("GoUserSettings", async (evt) => {
+  console.log("GoUserEvent");
   const language = await GetUserPage();
-  new UserSettingsController(document.body, language);
+  UserSettingsController(document.body, language);
 })
 
 document.addEventListener("LoginUserEvent", (evt) => {

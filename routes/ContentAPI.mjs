@@ -1,21 +1,19 @@
 import express from "express"
 import sanitizeString from "../modules/InputCleanup/SanitizeString.mjs"
 import { storageManagerInstance } from "../modules/storageProviders/storageManager.mjs"
+import getLanguage from "../modules/languageProvider/getLanguage.mjs"
 
 const ContentRouter = express.Router()
 
-
-const BoardGamesForTesting = [
-  {id: 1000, Status: 2, BelongsTo: 1, title: "For the King and Me"},
-  {id: 1001, Status: 2, BelongsTo: 1, title: "Century: Big box"}
-]
+ContentRouter.use(express.json());
+ContentRouter.use(getLanguage);
 
 ContentRouter.get('/home', sanitizeString, (req, res, next) => {
 try{
-   const games = storageManagerInstance.
-   res.status(200).json();
+   const games = storageManagerInstance.games();
+   res.status(200).json(games);
 }catch(err){
-
+next(err)
 }
 })
 

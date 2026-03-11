@@ -71,10 +71,10 @@ let postgreSQL = {
 
         }
     },
-    Games: async (pool) => {
+    games: async (pool) => {
         try {
             const gameData = await pool.query(
-
+                'SELECT id, status, belongs_to,title FROM boardgame'
             )
             if (gameData.rows[0]) {
                 return gameData.rows
@@ -86,7 +86,7 @@ let postgreSQL = {
         }
     },
 
-deleteUser: async (user, pool) => {
+    deleteUser: async (user, pool) => {
 
     }
 }

@@ -3,10 +3,11 @@ import find from "../findElement.mjs";
 
 let viewName = "UserSettingsView";
 
+let template = null;
 
-const template = await loadView(viewName);
-
-function UserSettingsController(target, language) {
+async function UserSettingsController(target, language) {
+    console.log("UserSettingsRunning")
+    template = await loadView(viewName);
     render(target, language)
 }
 

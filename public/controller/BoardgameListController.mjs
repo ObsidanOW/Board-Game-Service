@@ -1,13 +1,15 @@
 import loadView from "../viewLoader.mjs";
 import find from "../findElement.mjs";
 
-let viewName = "BoardgameList";
+let viewName = "BoardgameListView";
 let viewItemName = "BoardgameListItem";
 
-const template = await loadView(viewName);
-const itemTemplate = await loadView(viewItemName)
+let template = null;
+let itemTemplate = null;
 
-function BoardgameListController(target, games = []) {
+async function BoardgameListController(target, games = []) {
+    template = await loadView(viewName);
+    itemTemplate = await loadView(viewItemName);
     const __target = target;
 
     games.onDetail = (id) => {
