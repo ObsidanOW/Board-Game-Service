@@ -11,28 +11,28 @@ async function BoardgameListController(target, games = []) {
     template = await loadView(viewName);
     itemTemplate = await loadView(viewItemName);
     const __target = target;
-
-    games.onDetail = (id) => {
-        //TOOD navigation event that does a get with the appropriate id
-    }
-
-
     render(__target, games)
 }
 
 function render(target, games) {
     target.innerHTML = ""
 
-    for (const game of games) {
-        const gameElement = document.importNode(itemTemplate.content, true);
-        find("h3", gameElement).value = game.title;
-        
+    const GameListElement = document.importNode(template.content, true);
+    const list = find("ul", GameListElement);
 
-        gameButton = find("button", gameElement);
+    for (const game of games) {
+
+        const gameElement = document.importNode(itemTemplate.content, true);
+        find("h3", gameElement).innerText = game.title;
+
+        const gameButton = find("button", gameElement);
         gameButton.addEventListener("click", () => {
-            onDetail(game.id)
+            const GoGameDetail = new CustomEvent("GoGameDetail", { composed: true, bubbles: true, detail: { game: game } })
+            target.dispatchEvent(GoGameDetail);
         })
+        list.appendChild(gameElement);
     }
+    target.appendChild(GameListElement);
 }
 
 export default BoardgameListController;

@@ -6,7 +6,6 @@ let viewName = "UserSettingsView";
 let template = null;
 
 async function UserSettingsController(target, language) {
-    console.log("UserSettingsRunning")
     template = await loadView(viewName);
     render(target, language)
 }

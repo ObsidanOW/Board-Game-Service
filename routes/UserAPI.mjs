@@ -19,7 +19,6 @@ userRouter.use(getLanguage);
 
 userRouter.get('/', (req, res, next) => {
     try {
-        console.log("root user");
         res.status(200).json(i18n[req.language]?.HTML.user)
     } catch (err) {
         next(err)

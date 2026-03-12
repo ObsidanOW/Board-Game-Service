@@ -12,11 +12,24 @@ export async function get(url, contentType) {
 
 export async function GetGames() {
     const url = "/content/home";
-    try{
+    try {
         const data = await sendRequest("GET", url, null, null);
         const json = await data.json();
         console.log(json);
-    }catch(err){
+        return json;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export async function GetGame() {
+    const url = "/content/home";
+    try {
+        const data = await sendRequest("GET", url, null, null);
+        const json = await data.json();
+        console.log(json);
+        return json;
+    } catch (err) {
         throw err;
     }
 }
@@ -24,9 +37,9 @@ export async function GetGames() {
 export async function GetUserPage() {
     const url = "/user/";
     try {
-        const data = await sendRequest("GET", url, null, null)
+        const data = await sendRequest("GET", url, null, null);
         const json = await data.json();
-        console.log(json);
+        console.log(data);
         return json;
     } catch (err) {
         throw err;
@@ -37,13 +50,12 @@ export async function PostUserCreate(Form) {
     const url = "/user/createuser"
     try {
         const data = await sendRequest("POST", url, Form, HTTP.contentTypes.application.json);
-
+        
         const json = await data.json();
         console.log(json);
         return data;
     } catch (err) {
         console.log("catch error", err);
-        //TODO errorhandling
     }
 }
 

@@ -74,7 +74,7 @@ let postgreSQL = {
     games: async (pool) => {
         try {
             const gameData = await pool.query(
-                'SELECT id, status, belongs_to,title FROM boardgame'
+                'SELECT id, status, belongs_to,title FROM boardgames'
             )
             if (gameData.rows[0]) {
                 return gameData.rows

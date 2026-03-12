@@ -8,9 +8,9 @@ const ContentRouter = express.Router()
 ContentRouter.use(express.json());
 ContentRouter.use(getLanguage);
 
-ContentRouter.get('/home', sanitizeString, (req, res, next) => {
+ContentRouter.get('/home', sanitizeString, async (req, res, next) => {
 try{
-   const games = storageManagerInstance.games();
+   const games = await storageManagerInstance.games();
    res.status(200).json(games);
 }catch(err){
 next(err)

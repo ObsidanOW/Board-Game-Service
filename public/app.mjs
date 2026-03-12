@@ -1,12 +1,20 @@
 import BoardgameListController from "./controller/BoardgameListController.mjs";
+import { BoardgameDetailController } from "./controller/BoardgameDetailController.mjs";
 import UserSettingsController from "./controller/UserSettingsController.mjs";
-import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames } from "./fetchManager.mjs";
+import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames, GetGame } from "./fetchManager.mjs";
 
 const games = await GetGames();
+console.log("games(app): ", games);
 BoardgameListController(document.body, games)
 
-document.addEventListener("GoToDetail", async (evt) => {
-const language = await GetGame(id);
+document.addEventListener("GoHome", async (evt) => {
+  const games = await GetGames();
+  BoardgameListController(document.body, games)
+})
+
+document.addEventListener("GoGameDetail", async (evt) => {
+  //const game = await GetGame();
+  BoardgameDetailController(document.body, evt.detail.game);
 })
 
 document.addEventListener("GoUserSettings", async (evt) => {
@@ -15,8 +23,10 @@ document.addEventListener("GoUserSettings", async (evt) => {
   UserSettingsController(document.body, language);
 })
 
+
+
 document.addEventListener("LoginUserEvent", (evt) => {
-  PostUserLogin(evt.detail)
+  const Token = PostUserLogin(evt.detail)
 })
 
 document.addEventListener("CreateUserEvent", (evt) => {
@@ -30,6 +40,8 @@ document.addEventListener("EditUserEvent", (evt) => {
 document.addEventListener("DeleteUserEvent", (evt) => {
   DeleteUser(evt.detail)
 })
+
+
 
 
 if ("serviceWorker" in navigator) {
