@@ -2,7 +2,14 @@ import BoardgameListController from "./controller/BoardgameListController.mjs";
 import { BoardgameDetailController } from "./controller/BoardgameDetailController.mjs";
 import UserSettingsController from "./controller/UserSettingsController.mjs";
 import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames, GetGame } from "./fetchManager.mjs";
+import { getStorage, setStorage } from "./modules/LocalStorage.mjs";
 
+const languageCode = navigator.language || "en";
+
+let HTMLInner = localStorage.getItem("HTML" + languageCode)
+if(HTMLInner === undefined){
+  HTMLInner = await GetLanguage();
+}
 const games = await GetGames();
 console.log("games(app): ", games);
 BoardgameListController(document.body, games)

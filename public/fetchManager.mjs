@@ -10,12 +10,22 @@ export async function get(url, contentType) {
     }
 }
 
+export async function GetLanguage() {
+    const url = "/content/language";
+    try {
+        const data = await sendRequest("GET", url, null, null);
+        const json = await data.json();
+        return json;
+    }catch(err) {
+        throw err;
+    }
+}
+
 export async function GetGames() {
     const url = "/content/home";
     try {
         const data = await sendRequest("GET", url, null, null);
         const json = await data.json();
-        console.log(json);
         return json;
     } catch (err) {
         throw err;
