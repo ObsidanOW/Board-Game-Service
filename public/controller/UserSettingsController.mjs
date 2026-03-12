@@ -1,19 +1,26 @@
 import loadView from "../viewLoader.mjs";
 import find from "../findElement.mjs";
+import { HTMLInner } from "../app.mjs";
+import homeButton from "../modules/homeButton.mjs";
 
 let viewName = "UserSettingsView";
 
 let template = null;
 
-async function UserSettingsController(target, language) {
+async function UserSettingsController(target, token) {
     template = await loadView(viewName);
-    render(target, language)
+    render(target)
 }
 
-function render(target, language) {
+function render(target) {
+    const language = HTMLInner;
+
+
 
     target.innerHTML = "";
     const FormElement = document.importNode(template.content, true);
+
+    homeButton(FormElement, null)
 
     const loginForm = find("#login", FormElement);
     loginForm.addEventListener("submit", (evt) => {

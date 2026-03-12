@@ -1,39 +1,54 @@
 import BoardgameListController from "./controller/BoardgameListController.mjs";
 import { BoardgameDetailController } from "./controller/BoardgameDetailController.mjs";
 import UserSettingsController from "./controller/UserSettingsController.mjs";
-import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames, GetGame } from "./fetchManager.mjs";
+import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames, GetGame, GetLanguage } from "./fetchManager.mjs";
 import { getStorage, setStorage } from "./modules/LocalStorage.mjs";
 
-const languageCode = navigator.language || "en";
 
-let HTMLInner = localStorage.getItem("HTML" + languageCode)
-if(HTMLInner === undefined){
-  HTMLInner = await GetLanguage();
+export let HTMLInner = undefined;
+let Token = null;
+loadApp();
+
+async function loadApp() {
+  const languageCode = navigator.language || "en";
+
+  HTMLInner = getStorage("HTML" + languageCode)
+  if (HTMLInner === undefined) {
+    HTMLInner = await GetLanguage();
+    setStorage("HTML" + languageCode, HTMLInner);
+  }
+
+  Token = localStorage.getItem("Token") || null;
+
+  const games = await GetGames();
+  BoardgameListController(document.body, games, Token)
 }
-const games = await GetGames();
-console.log("games(app): ", games);
-BoardgameListController(document.body, games)
+
+
 
 document.addEventListener("GoHome", async (evt) => {
   const games = await GetGames();
-  BoardgameListController(document.body, games)
+  BoardgameListController(document.body, games, Token)
+})
+
+document.addEventListener("GoUser", async (evt) => {
+  console.log("GoUser event")
+UserSettingsController(document.body, Token)
 })
 
 document.addEventListener("GoGameDetail", async (evt) => {
-  //const game = await GetGame();
-  BoardgameDetailController(document.body, evt.detail.game);
+  BoardgameDetailController(document.body, evt.detail.game, Token);
 })
 
 document.addEventListener("GoUserSettings", async (evt) => {
-  console.log("GoUserEvent");
-  const language = await GetUserPage();
-  UserSettingsController(document.body, language);
+  UserSettingsController(document.body, Token);
 })
 
 
 
-document.addEventListener("LoginUserEvent", (evt) => {
-  const Token = PostUserLogin(evt.detail)
+document.addEventListener("LoginUserEvent", async (evt) => {
+  Token = await PostUserLogin(evt.detail)
+  setStorage("Token", Token)
 })
 
 document.addEventListener("CreateUserEvent", (evt) => {

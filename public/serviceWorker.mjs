@@ -2,7 +2,6 @@ const CACHE_NAME = "cache";
 const cacheFiles = [
   '/',
   '/index.html',
-  '/app.mjs',
   '/app.css',
 ]
 

@@ -1,11 +1,11 @@
 import loadView from "../viewLoader.mjs";
 import find from "../findElement.mjs";
+import homeButton from "../modules/homeButton.mjs";
 
 const viewName = "BoardgameDetailView";
 let template = null;
 
-export async function BoardgameDetailController(target, game) {
-    console.log(viewName);
+export async function BoardgameDetailController(target, game, Token) {
     template = await loadView(viewName);
 
     render(target, game)
@@ -17,12 +17,8 @@ function render(target, game) {
     const Header = find("h1", gameElement);
     Header.innerText = game.title
 
-
-    const HomeButton = find("#Home", gameElement);
-    HomeButton.addEventListener("click", () => {
-    const GoHome = new CustomEvent("GoHome", {composed: true, bubbles: true});
-    target.dispatchEvent(GoHome);
-    })
-
+homeButton(gameElement, null)
+//TODO change to language
+  
     target.appendChild(gameElement);
 }

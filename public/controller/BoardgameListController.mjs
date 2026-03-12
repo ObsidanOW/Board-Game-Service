@@ -1,5 +1,6 @@
 import loadView from "../viewLoader.mjs";
 import find from "../findElement.mjs";
+import userButton from "../modules/userButton.mjs";
 
 let viewName = "BoardgameListView";
 let viewItemName = "BoardgameListItem";
@@ -7,7 +8,8 @@ let viewItemName = "BoardgameListItem";
 let template = null;
 let itemTemplate = null;
 
-async function BoardgameListController(target, games = []) {
+async function BoardgameListController(target, games, token) {
+    console.log(token);
     template = await loadView(viewName);
     itemTemplate = await loadView(viewItemName);
     const __target = target;
@@ -18,6 +20,9 @@ function render(target, games) {
     target.innerHTML = ""
 
     const GameListElement = document.importNode(template.content, true);
+    
+userButton(GameListElement, null)
+
     const list = find("ul", GameListElement);
 
     for (const game of games) {
