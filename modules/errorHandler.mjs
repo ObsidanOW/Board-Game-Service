@@ -2,13 +2,33 @@ import { i18n, errEnum, Languages } from "./languageProvider/messageHandler.mjs"
 
 
 const errorHandler = (err, req, res, next) => {
-    console.log(err.message);
-    const message = i18n[req.language]?.errorCodes?.[err.message] || "UNKNOWN ERROR"
-    console.log("message: ", message, " i18n[req.language]: ", i18n[req.language]);
+    const Message = i18n[req.language]?.errorCodes?.[err.message] || "Internal server error"
 
-    res.status(500).json({ error: message })
+    let errorCode = 500;
+    switch (err.message) {
+        case errEnum.databaseError:
+            errorCode = 500;
+            break;
+        case errEnum.nonExistentGame:
+            errorCode = 404;
+            break;
+        case errEnum.serverError:
+            errorCode = 500;
+            break;
+        case errEnum.usernameIsTaken:
+            errorCode = 409;
+            break;
+        case errEnum.wrongCredentials:
+            errorCode = 401;
+            break;
+        default:
+            console.error(err)
+            break;
 
-    console.log("switched through err.message: ", err.message)
+    }
+
+
+    res.status(errorCode).json({ error: Message })
 }
 
 export default errorHandler;
