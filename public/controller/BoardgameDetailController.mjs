@@ -17,7 +17,7 @@ function render(target, game) {
     const Header = find("h1", gameElement);
     Header.innerText = game.title
 
-homeButton(gameElement, null)
+homeButton(gameElement, target, null)
 //TODO change to language
   
     target.appendChild(gameElement);

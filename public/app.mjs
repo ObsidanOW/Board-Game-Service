@@ -27,6 +27,7 @@ async function loadApp() {
 
 
 document.addEventListener("GoHome", async (evt) => {
+    console.log("homebutton event")
   const games = await GetGames();
   BoardgameListController(document.body, games, Token)
 })
