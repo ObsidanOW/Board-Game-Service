@@ -21,6 +21,10 @@ class userManager {
         }
     }
 
+    async FindUser(user){
+       return await storageManagerInstance.matchName(user)
+    }
+
     async CreateUser(user) {
         const dbMatch = await storageManagerInstance.matchName(user);
         console.log("look for match: ", user);

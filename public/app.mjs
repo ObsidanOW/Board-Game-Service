@@ -20,21 +20,23 @@ async function loadApp() {
 
   Token = localStorage.getItem("Token") || null;
 
-  const games = await GetGames();
-  BoardgameListController(document.body, games, Token)
+UserSettingsController(document.body,Token);
+
+ /*  const games = await GetGames();
+  BoardgameListController(document.body, games, Token) */
 }
 
 
 
 document.addEventListener("GoHome", async (evt) => {
-    console.log("homebutton event")
+  console.log("homebutton event")
   const games = await GetGames();
   BoardgameListController(document.body, games, Token)
 })
 
 document.addEventListener("GoUser", async (evt) => {
   console.log("GoUser event")
-UserSettingsController(document.body, Token)
+  UserSettingsController(document.body, Token)
 })
 
 document.addEventListener("GoGameDetail", async (evt) => {

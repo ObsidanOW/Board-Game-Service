@@ -14,7 +14,7 @@ let postgreSQL = {
                 [user.id, user.name, user.psw]
             );
         } catch (err) {
-
+throw err
         }
     },
 
@@ -28,13 +28,13 @@ let postgreSQL = {
                 'SELECT user_id,username,password FROM "User" WHERE user_id = $1',
                 [user.id]
             )
-            if (userData.rows[0]) {
+            if (userData.rows[0].username) {
                 return true;
             } else {
                 return false;
             }
         } catch (err) {
-
+throw err
         }
     },
 
@@ -46,13 +46,13 @@ let postgreSQL = {
                 'SELECT user_id,username,password FROM "User" WHERE username = $1',
                 [user.name]
             )
-            if (userData.rows[0]) {
+            if (userData.rows[0].username) {
                 return true;
             } else {
                 return false;
             }
         } catch (err) {
-
+throw err
         }
     },
 
@@ -63,12 +63,12 @@ let postgreSQL = {
                 [user.name, user.psw]
             )
             if (userData.rows[0]) {
-                return userData.rows[0];
+                return userData.rows[0].username;
             } else {
 
             }
         } catch (err) {
-
+throw err
         }
     },
     games: async (pool) => {

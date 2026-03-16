@@ -26,6 +26,8 @@ export async function GetGames() {
     try {
         const data = await sendRequest("GET", url, null, null);
         const json = await data.json();
+        console.log(data)
+        console.log(json);
         return json;
     } catch (err) {
         throw err;
@@ -37,6 +39,7 @@ export async function GetGame() {
     try {
         const data = await sendRequest("GET", url, null, null);
         const json = await data.json();
+        console.log(data)
         console.log(json);
         return json;
     } catch (err) {
@@ -49,7 +52,8 @@ export async function GetUserPage() {
     try {
         const data = await sendRequest("GET", url, null, null);
         const json = await data.json();
-        console.log(data);
+        console.log(data)
+        console.log(json);
         return json;
     } catch (err) {
         throw err;
@@ -62,6 +66,7 @@ export async function PostUserCreate(Form) {
         const data = await sendRequest("POST", url, Form, HTTP.contentTypes.application.json);
         
         const json = await data.json();
+        console.log(data)
         console.log(json);
         return data;
     } catch (err) {

@@ -1,5 +1,5 @@
 import express from "express"
-
+import jwt from "jsonwebtoken";
 import user from "../dataObjects/user.mjs";
 import securityAudit from "../modules/security.mjs";
 import Authenticate from "../modules/Authenticate.mjs";
@@ -25,13 +25,14 @@ userRouter.get('/', (req, res, next) => {
     }
 })
 
-userRouter.post('/login', securityAudit, Authenticate, (req, res, next) => {
+userRouter.post('/login', securityAudit, Authenticate, async (req, res, next) => {
     try {
-        if (req.token) {
-            res.status(200).json(req.token);
-        } else {
+
+        const username = await userManagerInstance.LoginUser(new user(req.body.name, req.psw));
+        if (username === null) {
             throw new Error(errEnum.wrongCredentials);
         }
+        const token = jwt.sign({ username }, process.env.SECRET);
     } catch (err) {
         next(err);
     }
