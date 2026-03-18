@@ -1,13 +1,14 @@
 import express from "express"
 import jwt from "jsonwebtoken";
 import user from "../dataObjects/user.mjs";
-import securityAudit from "../modules/security.mjs";
-import Authenticate from "../modules/Authenticate.mjs";
+import securityAudit from "../modules/security/passwordSecurity.mjs";
+import Authenticate from "../modules/security/Authenticate.mjs";
+import Authorization from "../modules/security/Authorization.mjs";
 import { userManagerInstance } from "../modules/userManager.mjs";
 import getLanguage from "../modules/languageProvider/getLanguage.mjs";
 import errorHandler from "../modules/errorHandler.mjs";
 import { errEnum } from "../modules/languageProvider/messageHandler.mjs";
-import { i18n } from "../modules/languageProvider/messageHandler.mjs";
+import { i18n } from "../modules/languageProvider/messageHandler.mjs";7
 
 
 
@@ -25,14 +26,12 @@ userRouter.get('/', (req, res, next) => {
     }
 })
 
-userRouter.post('/login', securityAudit, Authenticate, async (req, res, next) => {
+userRouter.post('/login', securityAudit, async (req, res, next) => {
     try {
 
-        const username = await userManagerInstance.LoginUser(new user(req.body.name, req.psw));
-        if (username === null) {
-            throw new Error(errEnum.wrongCredentials);
-        }
-        const token = jwt.sign({ username }, process.env.SECRET);
+        const token = await Authenticate(req.body.username, req.psw);
+    
+        res.status(200).send({ token })
     } catch (err) {
         next(err);
     }
@@ -41,7 +40,8 @@ userRouter.post('/login', securityAudit, Authenticate, async (req, res, next) =>
 
 userRouter.post('/createuser', securityAudit, async (req, res, next) => {
     try {
-        await userManagerInstance.CreateUser(user(req.body.name, req.psw))
+        console.log(req.body);
+        await userManagerInstance.CreateUser(user(req.body.username, req.psw))
         res.status(200).json({ result: "created user" });
     } catch (err) {
         next(err);
@@ -58,7 +58,7 @@ userRouter.patch('/edituser', securityAudit, (req, res, next) => {
 
 })
 
-userRouter.delete('/deleteuser', securityAudit, Authenticate, (req, res, next) => {
+userRouter.delete('/deleteuser', securityAudit, Authorization, (req, res, next) => {
     try {
         console.log("auth token in deleteuser: ", req.token)
         res.json((req.token));

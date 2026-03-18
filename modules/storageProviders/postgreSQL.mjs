@@ -28,7 +28,7 @@ throw err
                 'SELECT user_id,username,password FROM "User" WHERE user_id = $1',
                 [user.id]
             )
-            if (userData.rows[0].username) {
+            if (userData.rows[0]) {
                 return true;
             } else {
                 return false;
@@ -46,7 +46,7 @@ throw err
                 'SELECT user_id,username,password FROM "User" WHERE username = $1',
                 [user.name]
             )
-            if (userData.rows[0].username) {
+            if (userData.rows[0]) {
                 return true;
             } else {
                 return false;

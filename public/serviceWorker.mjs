@@ -6,7 +6,6 @@ const cacheFiles = [
 ]
 
 self.addEventListener('install', event => {
-  console.log("install");
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(cacheFiles)).catch(() => {
@@ -17,7 +16,6 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-  console.log("listened fetch: ", event)
   event.respondWith(
     caches.match(event.request).then(response => response || fetch(event.request)).catch(() => {
       if (event.request.mode === "navigate") {

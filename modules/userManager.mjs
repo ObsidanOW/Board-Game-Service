@@ -27,12 +27,11 @@ class userManager {
 
     async CreateUser(user) {
         const dbMatch = await storageManagerInstance.matchName(user);
-        console.log("look for match: ", user);
+      
         if (!dbMatch) {
             user.id = await generateID()
             await storageManagerInstance.save(user)
         } else {
-            console.log("name matched already existing user");
             throw new Error(errEnum.usernameIsTaken);
         }
     }

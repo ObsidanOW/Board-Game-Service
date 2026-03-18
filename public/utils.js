@@ -12,8 +12,6 @@ export async function sendRequest(method, url, data, contentType){
     }
 
     let response = await fetch(url, headers);
-//const responseData = await response.json();
-  //  console.log("response: ", responseData);
     return response; 
 
 }

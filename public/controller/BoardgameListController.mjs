@@ -8,8 +8,7 @@ let viewItemName = "BoardgameListItem";
 let template = null;
 let itemTemplate = null;
 
-async function BoardgameListController(target, games, token) {
-    console.log(token);
+async function BoardgameListController(target, games) {
     template = await loadView(viewName);
     itemTemplate = await loadView(viewItemName);
     const __target = target;

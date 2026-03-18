@@ -7,13 +7,14 @@ let viewName = "UserSettingsView";
 
 let template = null;
 
-async function UserSettingsController(target, token) {
+async function UserSettingsController(target) {
     template = await loadView(viewName);
     render(target)
 }
 
 function render(target) {
-    const language = HTMLInner;
+    const language = HTMLInner.user;
+    console.log("language: " ,language);
 
 
 

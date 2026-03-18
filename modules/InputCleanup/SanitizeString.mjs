@@ -10,14 +10,14 @@ if (req?.query?.search) {
 
 
     if (req?.body?.name && req?.body?.password) {
-        req.body.name = req.body.name.toLowerCase();
-        req.body.name = req.body.name.replace(RegularExpression, "")
+        req.body.username = req.body.name.toLowerCase();
+        req.body.username = req.body.name.replace(RegularExpression, "")
         req.body.password = req.body.password.toLowerCase();
         req.body.password = req.body.password.replace(RegularExpression, "")
     }
     next();
 }catch(err){
-console.log(err, " happened in sanitize");
+throw err
 }
     
 }

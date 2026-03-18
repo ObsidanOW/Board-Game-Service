@@ -14,16 +14,14 @@ async function loadApp() {
 
   HTMLInner = getStorage("HTML" + languageCode)
   if (HTMLInner === undefined) {
+
     HTMLInner = await GetLanguage();
+    console.log(HTMLInner);
     setStorage("HTML" + languageCode, HTMLInner);
   }
 
-  Token = localStorage.getItem("Token") || null;
-
-UserSettingsController(document.body,Token);
-
- /*  const games = await GetGames();
-  BoardgameListController(document.body, games, Token) */
+  UserSettingsController(document.body
+  );
 }
 
 
