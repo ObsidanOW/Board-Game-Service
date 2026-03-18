@@ -16,8 +16,7 @@ class userManager {
     
         const dbMatch = await storageManagerInstance.matchUser(user)
         if (dbMatch !== null && dbMatch !== undefined) {
-            const userMatch = { id: dbMatch.user_id, name: dbMatch.username, psw: dbMatch.password }
-            return userMatch
+            return dbMatch.user_id;
         }
     }
 
@@ -35,9 +34,19 @@ class userManager {
             throw new Error(errEnum.usernameIsTaken);
         }
     }
+
+    async DeleteUser(user){
+        const dbMatch = await storageManagerInstance.matchId(user);
+        if(dbMatch){
+await storageManagerInstance.deleteUser(user);
+        }else{
+            throw new Error(errEnum.noPermission);
+        }
+        
+    }
 }
 
-export async function generateID() {
+async function generateID() {
     let id = null;
     do {
         id = (Math.random() * Number.MAX_SAFE_INTEGER).toString(16);

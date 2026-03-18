@@ -6,6 +6,7 @@ export const errEnum = {
     usernameIsTaken: "usernameIsTaken",
     serverError: "serverError",
     databaseError: "databaseError",
+    noPermission: "noPermission"
 }
 
 export const i18n = {

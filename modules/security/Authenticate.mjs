@@ -4,11 +4,11 @@ import user from "../../dataObjects/user.mjs";
 import { errEnum } from "../languageProvider/messageHandler.mjs";
 
 async function Authenticate(name, password) {
-    const username = await userManagerInstance.LoginUser(new user(name, password));
-    if (username === null) {
+    const userId = await userManagerInstance.LoginUser(new user(name, password));
+    if (userId === null) {
         throw new Error(errEnum.wrongCredentials);
     }
-    const token = jwt.sign({ username }, process.env.SECRET);
+    const token = jwt.sign({ userId }, process.env.SECRET);
     return token
 }
 

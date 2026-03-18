@@ -14,6 +14,7 @@ let postgreSQL = {
                 [user.id, user.name, user.psw]
             );
         } catch (err) {
+            console.error(err);
             throw err
         }
     },
@@ -34,6 +35,7 @@ let postgreSQL = {
                 return false;
             }
         } catch (err) {
+            console.error(err);
             throw err
         }
     },
@@ -52,6 +54,7 @@ let postgreSQL = {
                 return false;
             }
         } catch (err) {
+            console.error(err);
             throw err
         }
     },
@@ -68,6 +71,7 @@ let postgreSQL = {
                 return null;
             }
         } catch (err) {
+            console.error(err);
             throw err
         }
     },
@@ -82,12 +86,27 @@ let postgreSQL = {
 
             }
         } catch (err) {
-
+            console.error(err);
+            throw err
         }
     },
 
     deleteUser: async (user, pool) => {
+        try {
+            const userData = await pool.query(
+                'DELETE from "User" WHERE user_id = $1 RETURNING *',
+                [user.id]
+            )
+            if (userData.rows[0]) {
+                return userData.rows[0]
+            }else{
+                throw new Error(errEnum.noPermission);
+            }
+        } catch (err) {
+            console.error(err);
+            throw err
 
+        }
     }
 }
 export default postgreSQL

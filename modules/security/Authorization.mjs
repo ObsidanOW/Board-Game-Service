@@ -9,7 +9,7 @@ async function Authorization(req, res, next) {
         const tokenUser = jwt.decode(token, process.env.SECRET, { expiresIn: "3h" });
         req.user = await userManagerInstance.FindUser(tokenUser);
         if (req.user === null) {
-            throw new Error(errEnum.wrongCredentials);
+            throw new Error(errEnum.noPermission);
         }
         next();
     } catch (err) {
