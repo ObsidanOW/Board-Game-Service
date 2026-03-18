@@ -5,7 +5,6 @@ import { errEnum } from "../languageProvider/messageHandler.mjs";
 
 async function Authenticate(name, password) {
     const username = await userManagerInstance.LoginUser(new user(name, password));
-    console.log("loginStorageManager response: ", username);
     if (username === null) {
         throw new Error(errEnum.wrongCredentials);
     }

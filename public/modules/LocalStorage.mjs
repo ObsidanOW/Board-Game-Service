@@ -1,14 +1,20 @@
 export function getStorage(key) {
-    localStorage.getItem(key);
+    const itemString = localStorage.getItem(key);
+    if (itemString !== null) {
+        const item = JSON.parse(itemString);
+        return item;
+    }
 }
 
 export function setStorage(key, value, overwrite = true) {
     if (!overwrite) {
         if (localStorage.getItem(key) === undefined) {
-            localStorage.setItem(key, value)
+            const valueString = JSON.stringify(value);
+            localStorage.setItem(key, valueString)
         }
     } else {
-        localStorage.setItem(key, value)
+        const valueString = JSON.stringify(value)
+        localStorage.setItem(key, valueString)
     }
 
 }

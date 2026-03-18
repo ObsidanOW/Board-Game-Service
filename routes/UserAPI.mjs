@@ -60,11 +60,11 @@ userRouter.patch('/edituser', securityAudit, (req, res, next) => {
 
 userRouter.delete('/deleteuser', securityAudit, Authorization, (req, res, next) => {
     try {
-        console.log("auth token in deleteuser: ", req.token)
-        res.json((req.token));
+        console.log("auth token in deleteuser: ", req.token, "matching user: ", req.user);
+        userManagerInstance.
     }
     catch (err) {
-        console.log("deleteuser failed", err);
+        console.error("deleteuser failed", err);
         next(err)
     }
 

@@ -16,8 +16,8 @@ class userManager {
     
         const dbMatch = await storageManagerInstance.matchUser(user)
         if (dbMatch !== null && dbMatch !== undefined) {
-            const token = { id: dbMatch.user_id, name: dbMatch.username, psw: dbMatch.password }
-            return token
+            const userMatch = { id: dbMatch.user_id, name: dbMatch.username, psw: dbMatch.password }
+            return userMatch
         }
     }
 

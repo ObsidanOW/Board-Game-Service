@@ -13,23 +13,27 @@ async function loadApp() {
   const languageCode = navigator.language || "en";
 
   HTMLInner = getStorage("HTML" + languageCode)
-  if (HTMLInner === undefined) {
+  if (HTMLInner === undefined || HTMLInner === null) {
 
     HTMLInner = await GetLanguage();
-    console.log(HTMLInner);
     setStorage("HTML" + languageCode, HTMLInner);
   }
 
-  UserSettingsController(document.body
-  );
+  Token = getStorage("Token")
+  if(Token === null || Token === undefined){
+     UserSettingsController(document.body);
+  }else{
+    const games = await GetGames();
+    BoardgameListController(document.body, games);
+  }
+ 
 }
 
 
 
 document.addEventListener("GoHome", async (evt) => {
-  console.log("homebutton event")
   const games = await GetGames();
-  BoardgameListController(document.body, games, Token)
+  BoardgameListController(document.body, games)
 })
 
 document.addEventListener("GoUser", async (evt) => {
@@ -63,7 +67,6 @@ document.addEventListener("EditUserEvent", (evt) => {
 document.addEventListener("DeleteUserEvent", (evt) => {
   DeleteUser(evt.detail)
 })
-
 
 
 

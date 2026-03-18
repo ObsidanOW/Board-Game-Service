@@ -14,7 +14,7 @@ let postgreSQL = {
                 [user.id, user.name, user.psw]
             );
         } catch (err) {
-throw err
+            throw err
         }
     },
 
@@ -34,7 +34,7 @@ throw err
                 return false;
             }
         } catch (err) {
-throw err
+            throw err
         }
     },
 
@@ -52,7 +52,7 @@ throw err
                 return false;
             }
         } catch (err) {
-throw err
+            throw err
         }
     },
 
@@ -63,12 +63,12 @@ throw err
                 [user.name, user.psw]
             )
             if (userData.rows[0]) {
-                return userData.rows[0].username;
+                return userData.rows[0];
             } else {
-
+                return null;
             }
         } catch (err) {
-throw err
+            throw err
         }
     },
     games: async (pool) => {

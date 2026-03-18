@@ -14,16 +14,13 @@ async function UserSettingsController(target) {
 
 function render(target) {
     const language = HTMLInner.user;
-    console.log("language: " ,language);
-
-
-
     target.innerHTML = "";
     const FormElement = document.importNode(template.content, true);
 
     homeButton(FormElement, null)
 
     const loginForm = find("#login", FormElement);
+
     loginForm.addEventListener("submit", (evt) => {
         evt.preventDefault();
         const formData = new FormData(loginForm);
@@ -34,6 +31,7 @@ function render(target) {
     })
 
     const createForm = find("#create", FormElement);
+
     createForm.addEventListener("submit", (evt) => {
         evt.preventDefault();
         const formData = new FormData(createForm);
@@ -44,6 +42,7 @@ function render(target) {
     })
 
     const editForm = find("#edit", FormElement);
+
     editForm.addEventListener("submit", (evt) => {
         evt.preventDefault();
         const formData = new FormData(editForm);
