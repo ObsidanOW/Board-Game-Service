@@ -20,7 +20,7 @@ function render(target, games) {
 
     const GameListElement = document.importNode(template.content, true);
     
-userButton(GameListElement, null)
+userButton(GameListElement, target)
 
     const list = find("ul", GameListElement);
 

@@ -8,7 +8,7 @@ import { userManagerInstance } from "../modules/userManager.mjs";
 import getLanguage from "../modules/languageProvider/getLanguage.mjs";
 import errorHandler from "../modules/errorHandler.mjs";
 import { errEnum } from "../modules/languageProvider/messageHandler.mjs";
-import { i18n } from "../modules/languageProvider/messageHandler.mjs";7
+import { i18n } from "../modules/languageProvider/messageHandler.mjs"; 7
 
 
 
@@ -30,7 +30,7 @@ userRouter.post('/login', securityAudit, async (req, res, next) => {
     try {
 
         const token = await Authenticate(req.body.username, req.psw);
-    
+
         res.status(200).send({ token })
     } catch (err) {
         next(err);
@@ -58,10 +58,10 @@ userRouter.patch('/edituser', securityAudit, (req, res, next) => {
 
 })
 
-userRouter.delete('/deleteuser', securityAudit, Authorization, (req, res, next) => {
+userRouter.delete('/deleteuser', securityAudit, Authorization, async (req, res, next) => {
     try {
-        console.log("auth token in deleteuser: ", req.token, "matching user: ", req.user);
-        
+        const deletedUser = await userManagerInstance.DeleteUser(req.id);
+        res.status(200).json({result: "User " + deletedUser.username + " was deleted"})
     }
     catch (err) {
         console.error("deleteuser failed", err);

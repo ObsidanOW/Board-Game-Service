@@ -1,19 +1,19 @@
-import { userManagerInstance } from "../userManager.mjs"
-import { errEnum } from "../languageProvider/messageHandler.mjs";
 import jwt from "jsonwebtoken";
+import { errEnum } from "../languageProvider/messageHandler.mjs";
 
 async function Authorization(req, res, next) {
     try {
-        const token = req.headers.authorization.replace("bearer ", "");
+        const token = req.headers.authorization.split(" ")[1];
+        console.log(token);
+        jwt.verify(token, process.env.SECRET);
+        const tokenUser = jwt.decode(token, process.env.SECRET);
+        console.log(tokenUser);
+        req.id = tokenUser.userId;
 
-        const tokenUser = jwt.decode(token, process.env.SECRET, { expiresIn: "3h" });
-        req.user = await userManagerInstance.FindUser(tokenUser);
-        if (req.user === null) {
-            throw new Error(errEnum.noPermission);
-        }
         next();
     } catch (err) {
-        throw err;
+        console.error(err);
+        throw Error(errEnum.noPermission);
     }
 }
 

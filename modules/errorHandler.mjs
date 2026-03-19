@@ -21,6 +21,9 @@ const errorHandler = (err, req, res, next) => {
         case errEnum.wrongCredentials:
             errorCode = 401;
             break;
+            case errEnum.noPermission:
+            errorCode = 403;
+            break;
         default:
             console.error(err)
             break;

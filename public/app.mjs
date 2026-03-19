@@ -65,7 +65,7 @@ document.addEventListener("EditUserEvent", (evt) => {
 })
 
 document.addEventListener("DeleteUserEvent", (evt) => {
-  DeleteUser(evt.detail)
+  DeleteUser(evt.detail, Token)
 })
 
 

@@ -13,20 +13,20 @@ class userManager {
 
 
     async LoginUser(user) {
-    
+
         const dbMatch = await storageManagerInstance.matchUser(user)
         if (dbMatch !== null && dbMatch !== undefined) {
             return dbMatch.user_id;
         }
     }
 
-    async FindUser(user){
-       return await storageManagerInstance.matchName(user)
+    async FindUser(user) {
+        return await storageManagerInstance.matchName(user)
     }
 
     async CreateUser(user) {
         const dbMatch = await storageManagerInstance.matchName(user);
-      
+
         if (!dbMatch) {
             user.id = await generateID()
             await storageManagerInstance.save(user)
@@ -35,14 +35,20 @@ class userManager {
         }
     }
 
-    async DeleteUser(user){
-        const dbMatch = await storageManagerInstance.matchId(user);
-        if(dbMatch){
-await storageManagerInstance.deleteUser(user);
-        }else{
-            throw new Error(errEnum.noPermission);
+    async DeleteUser(id) {
+        try {
+            const dbMatch = await storageManagerInstance.matchId(id);
+            if (dbMatch) {
+                const deletedUser = await storageManagerInstance.deleteUser(id);
+                return deletedUser;
+            } else {
+                throw new Error(errEnum.noPermission);
+            }
+        } catch (err) {
+            throw err
         }
-        
+
+
     }
 }
 

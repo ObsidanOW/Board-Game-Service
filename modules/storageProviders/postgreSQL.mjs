@@ -20,14 +20,14 @@ let postgreSQL = {
     },
 
 
-    matchID: async (user, pool) => {
+    matchID: async (id, pool) => {
         try {
-            if (pool === undefined || user === undefined) {
+            if (pool === undefined || id === undefined) {
                 throw new Error(errEnum.serverError);
             }
             const userData = await pool.query(
                 'SELECT user_id,username,password FROM "User" WHERE user_id = $1',
-                [user.id]
+                [id]
             )
             if (userData.rows[0]) {
                 return true;
@@ -91,21 +91,20 @@ let postgreSQL = {
         }
     },
 
-    deleteUser: async (user, pool) => {
+    deleteUser: async (id, pool) => {
         try {
             const userData = await pool.query(
                 'DELETE from "User" WHERE user_id = $1 RETURNING *',
-                [user.id]
+                [id]
             )
             if (userData.rows[0]) {
-                return userData.rows[0]
+                return userData.rows[0];
             }else{
                 throw new Error(errEnum.noPermission);
             }
         } catch (err) {
             console.error(err);
-            throw err
-
+            throw Error(errEnum.noPermission);
         }
     }
 }

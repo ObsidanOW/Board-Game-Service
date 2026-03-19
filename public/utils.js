@@ -1,17 +1,30 @@
 
-export async function sendRequest(method, url, data, contentType){
-        const headers = {
-        method,
-        headers: {
-            'Content-Type': contentType,
-        }
-    };
+export async function sendRequest(method, url, data, contentType, Token = null) {
 
-    if(data){
+    let headers = null;
+
+    if (Token === null) {
+        headers = {
+            method,
+            headers: {
+                'Content-Type': contentType,
+            }
+        };
+    } else {
+        headers = {
+            method,
+            headers: {
+                'Content-Type': contentType,
+                'Authorization': `bearer ${Token}`,
+            }
+        };
+    }
+
+    if (data) {
         headers.body = JSON.stringify(data)
     }
 
     let response = await fetch(url, headers);
-    return response; 
+    return response;
 
 }

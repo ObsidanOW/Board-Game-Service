@@ -98,12 +98,15 @@ export async function PatchUser(Form) {
     }
 }
 
-export async function DeleteUser(Form) {
+export async function DeleteUser(Form, Token) {
+    console.log("token: ", Token);
     const url = "/user/deleteuser"
 
     try {
-        const data = await sendRequest("DELETE", url, Form, HTTP.contentTypes.application.json);
+        const data = await sendRequest("DELETE", url, Form, HTTP.contentTypes.application.json, Token.token);
         console.log("response", data);
+        const json = await data.json();
+        console.log(json);
         return;
     } catch {
         //TODO errorhandling
