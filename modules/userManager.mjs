@@ -42,7 +42,7 @@ class userManager {
                 const deletedUser = await storageManagerInstance.deleteUser(id);
                 return deletedUser;
             } else {
-                throw new Error(errEnum.noPermission);
+                throw new Error("user not found");
             }
         } catch (err) {
             throw err

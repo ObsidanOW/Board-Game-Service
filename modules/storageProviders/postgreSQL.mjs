@@ -100,11 +100,11 @@ let postgreSQL = {
             if (userData.rows[0]) {
                 return userData.rows[0];
             }else{
-                throw new Error(errEnum.noPermission);
+                throw new Error("user not found");
             }
         } catch (err) {
             console.error(err);
-            throw Error(errEnum.noPermission);
+            throw Error(errEnum.serverError);
         }
     }
 }

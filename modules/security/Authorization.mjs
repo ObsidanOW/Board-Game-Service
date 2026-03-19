@@ -13,7 +13,7 @@ async function Authorization(req, res, next) {
         next();
     } catch (err) {
         console.error(err);
-        throw Error(errEnum.noPermission);
+        throw Error(errEnum.wrongCredentials);
     }
 }
 
