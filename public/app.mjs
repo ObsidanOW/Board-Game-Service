@@ -2,11 +2,11 @@ import BoardgameListController from "./controller/BoardgameListController.mjs";
 import { BoardgameDetailController } from "./controller/BoardgameDetailController.mjs";
 import UserSettingsController from "./controller/UserSettingsController.mjs";
 import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames, GetGame, GetLanguage } from "./modules/API/requests.mjs";
-import { getStorage, setStorage } from "./modules/LocalStorage.mjs";
+import { getStorage, setStorage } from "./modules/localStorage.mjs";
 
 
 export let HTMLInner = undefined;
-let Token = null;
+export let Token = null;
 loadApp();
 
 async function loadApp() {
@@ -28,46 +28,6 @@ async function loadApp() {
   }
  
 }
-
-
-
-document.addEventListener("GoHome", async (evt) => {
-  const games = await GetGames();
-  BoardgameListController(document.body, games)
-})
-
-document.addEventListener("GoUser", async (evt) => {
-  console.log("GoUser event")
-  UserSettingsController(document.body, Token)
-})
-
-document.addEventListener("GoGameDetail", async (evt) => {
-  BoardgameDetailController(document.body, evt.detail.game, Token);
-})
-
-document.addEventListener("GoUserSettings", async (evt) => {
-  UserSettingsController(document.body, Token);
-})
-
-
-
-document.addEventListener("LoginUserEvent", async (evt) => {
-  Token = await PostUserLogin(evt.detail)
-  setStorage("Token", Token)
-})
-
-document.addEventListener("CreateUserEvent", (evt) => {
-  PostUserCreate(evt.detail)
-})
-
-document.addEventListener("EditUserEvent", (evt) => {
-  PatchUser(evt.detail)
-})
-
-document.addEventListener("DeleteUserEvent", (evt) => {
-  DeleteUser(evt.detail, Token)
-})
-
 
 
 if ("serviceWorker" in navigator) {

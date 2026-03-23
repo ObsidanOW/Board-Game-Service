@@ -8,7 +8,7 @@ async function Authenticate(name, password) {
     if (userId === null) {
         throw new Error(errEnum.wrongCredentials);
     }
-    const token = jwt.sign({ userId }, process.env.SECRET);
+    const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '20' });
     return token
 }
 
