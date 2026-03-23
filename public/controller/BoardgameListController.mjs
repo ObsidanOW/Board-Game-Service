@@ -1,5 +1,5 @@
-import loadView from "../viewLoader.mjs";
-import find from "../findElement.mjs";
+import loadView from "../modules/viewLoader.mjs";
+import find from "../modules/findElement.mjs";
 import userButton from "../modules/userButton.mjs";
 
 let viewName = "BoardgameListView";

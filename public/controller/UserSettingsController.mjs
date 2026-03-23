@@ -1,7 +1,7 @@
-import loadView from "../viewLoader.mjs";
-import find from "../findElement.mjs";
+import loadView from "../modules/viewLoader.mjs";
+import find from "../modules/findElement.mjs";
 import { HTMLInner } from "../app.mjs";
-import homeButton from "../modules/homeButton.mjs";
+import homeButton from "../modules/componentController/homeButton.mjs";
 
 let viewName = "UserSettingsView";
 

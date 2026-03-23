@@ -1,4 +1,4 @@
-import { sendRequest } from "./utils.js";
+import { sendRequest } from "./fetchManager.js";
 import HTTP from "./https.mjs";
 
 export async function get(url, contentType) {

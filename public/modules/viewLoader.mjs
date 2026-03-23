@@ -1,5 +1,5 @@
-import {get} from "./fetchManager.mjs"
-import HTTP from "./https.mjs"
+import {get} from "./API/requests.mjs"
+import HTTP from "./API/https.mjs"
 
 async function loadView(name){
    const viewTemplateRaw = await get(`./views/${name}.html`, HTTP.contentTypes.text.html);

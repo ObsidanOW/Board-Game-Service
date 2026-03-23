@@ -1,7 +1,7 @@
 import BoardgameListController from "./controller/BoardgameListController.mjs";
 import { BoardgameDetailController } from "./controller/BoardgameDetailController.mjs";
 import UserSettingsController from "./controller/UserSettingsController.mjs";
-import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames, GetGame, GetLanguage } from "./fetchManager.mjs";
+import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames, GetGame, GetLanguage } from "./modules/API/requests.mjs";
 import { getStorage, setStorage } from "./modules/LocalStorage.mjs";
 
 
