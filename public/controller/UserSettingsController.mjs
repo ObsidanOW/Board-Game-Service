@@ -1,7 +1,7 @@
 import loadView from "../modules/viewLoader.mjs";
 import find from "../modules/findElement.mjs";
+import homeButton from "../modules/componentControllers/homeButton.mjs";
 import { HTMLInner } from "../app.mjs";
-import homeButton from "../modules/componentController/homeButton.mjs";
 
 let viewName = "UserSettingsView";
 
@@ -17,7 +17,7 @@ function render(target) {
     target.innerHTML = "";
     const FormElement = document.importNode(template.content, true);
 
-    homeButton(FormElement, null)
+    homeButton(FormElement, target)
 
     const loginForm = find("#login", FormElement);
 
@@ -25,7 +25,7 @@ function render(target) {
         evt.preventDefault();
         const formData = new FormData(loginForm);
         const Form = Object.fromEntries(formData.entries());
-
+        console.log("login event");
         const CreateUserEvent = new CustomEvent("LoginUserEvent", { bubbles: true, composed: true, detail: Form });
         target.dispatchEvent(CreateUserEvent);
     })
@@ -36,7 +36,7 @@ function render(target) {
         evt.preventDefault();
         const formData = new FormData(createForm);
         const Form = Object.fromEntries(formData.entries());
-
+        console.log("create event");
         const CreateUserEvent = new CustomEvent("CreateUserEvent", { bubbles: true, composed: true, detail: Form });
         target.dispatchEvent(CreateUserEvent);
     })

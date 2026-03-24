@@ -1,10 +1,10 @@
-import { GoUserSettings } from "../ViewHandling.mjs";
+import { GoUser } from "../ViewHandling.mjs";
 
 export function errorFallback(errorCode) {
 
     switch (errorCode) {
         case 401:
-           GoUserSettings();
+            GoUser();
             break;
     }
 }

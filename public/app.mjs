@@ -6,7 +6,6 @@ import { getStorage, setStorage } from "./modules/localStorage.mjs";
 
 
 export let HTMLInner = undefined;
-export let Token = null;
 loadApp();
 
 async function loadApp() {
@@ -19,14 +18,12 @@ async function loadApp() {
     setStorage("HTML" + languageCode, HTMLInner);
   }
 
-  Token = getStorage("Token")
-  if(Token === null || Token === undefined){
+  if(getToken() === null || getToken() === undefined){
      UserSettingsController(document.body);
   }else{
     const games = await GetGames();
     BoardgameListController(document.body, games);
-  }
- 
+  } 
 }
 
 
@@ -46,4 +43,12 @@ function registerServiceWorker() {
     .catch((error) => {
       console.error("Service worker registration failed:", error);
     });
+}
+
+export function setToken(newToken){
+setStorage("Token", newToken);
+}
+
+export function getToken(){
+  return getStorage("Token");
 }

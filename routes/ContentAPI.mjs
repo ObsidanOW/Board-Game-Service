@@ -1,6 +1,6 @@
 import express from "express"
 import sanitizeString from "../modules/InputCleanup/SanitizeString.mjs"
-import { storageManagerInstance } from "../modules/storageProviders/storageManager.mjs"
+import { storageManagerInstance } from "../modules/storage/storageManager.mjs"
 import getLanguage from "../modules/languageProvider/getLanguage.mjs"
 import { i18n } from "../modules/languageProvider/messageHandler.mjs"
 

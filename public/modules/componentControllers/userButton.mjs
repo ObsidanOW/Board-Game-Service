@@ -1,4 +1,4 @@
-import find from "./findElement.mjs";
+import find from "../findElement.mjs";
 
 function userButton(Element, target) {
     const UserButton = find("#User", Element);

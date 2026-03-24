@@ -1,8 +1,8 @@
 const CACHE_NAME = "cache";
 const cacheFiles = [
-  '/',
-  '/index.html',
-  '/app.css',
+  './',
+  './index.html',
+  './app.css',
 ]
 
 self.addEventListener('install', event => {

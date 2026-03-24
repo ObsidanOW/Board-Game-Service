@@ -26,11 +26,9 @@ userRouter.get('/', (req, res, next) => {
     }
 })
 
-userRouter.post('/login', securityAudit, async (req, res, next) => {
+userRouter.post('/login', securityAudit, Authenticate, async (req, res, next) => {
     try {
-
-        const token = await Authenticate(req.body.username, req.psw);
-
+        const token = req.token;
         res.status(200).send({ token })
     } catch (err) {
         next(err);
@@ -50,8 +48,9 @@ userRouter.post('/createuser', securityAudit, async (req, res, next) => {
 
 })
 
-userRouter.patch('/edituser', securityAudit, (req, res, next) => {
+userRouter.patch('/edituser', securityAudit, Authorization, (req, res, next) => {
     try {
+const id = req.id;
 
     }
     catch (err) { next(err) }

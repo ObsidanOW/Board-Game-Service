@@ -1,6 +1,6 @@
 import loadView from "../modules/viewLoader.mjs";
 import find from "../modules/findElement.mjs";
-import homeButton from "../modules/componentController/homeButton.mjs";
+import homeButton from "../modules/componentControllers/homeButton.mjs";
 
 const viewName = "BoardgameDetailView";
 let template = null;

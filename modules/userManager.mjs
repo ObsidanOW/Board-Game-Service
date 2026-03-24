@@ -1,5 +1,5 @@
 import { errEnum } from "./languageProvider/messageHandler.mjs";
-import { storageManagerInstance } from "./storageProviders/storageManager.mjs";
+import { storageManagerInstance } from "./storage/storageManager.mjs";
 
 export let userManagerInstance = null;
 

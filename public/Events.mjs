@@ -1,4 +1,6 @@
-import { GoHome, GoUser,GoGameDetail, GoUserSettings, LoginUser, DeletingUser } from "./ViewHandling.mjs";
+import { GoHome, GoUser, GoGameDetail, LoginUser, DeletingUser, CreateUser, EditUser } from "./ViewHandling.mjs";
+
+console.log("events runs")
 
 document.addEventListener("GoHome", async (evt) => {
  GoHome();
@@ -12,9 +14,6 @@ document.addEventListener("GoGameDetail", async (evt) => {
   GoGameDetail(evt.detail.game);
 })
 
-document.addEventListener("GoUserSettings", async (evt) => {
-  GoUserSettings();
-})
 
 document.addEventListener("LoginUserEvent", async (evt) => {
   LoginUser(evt.detail);
