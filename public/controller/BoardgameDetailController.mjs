@@ -5,7 +5,7 @@ import homeButton from "../modules/componentControllers/homeButton.mjs";
 const viewName = "BoardgameDetailView";
 let template = null;
 
-export async function BoardgameDetailController(target, game, Token) {
+export async function BoardgameDetailController(target, game) {
     template = await loadView(viewName);
 
     render(target, game)

@@ -35,6 +35,19 @@ class userManager {
         }
     }
 
+    async EditUser(id, newUserData) {
+        try {
+            const dbMatch = await storageManagerInstance.matchId(id);
+            if (dbMatch) {
+                const editUser = await storageManagerInstance.editUser(id, newUserData);
+                return editUser;
+            }
+        } catch (err) {
+            console.error(err);
+            throw new Error(errEnum.databaseError)
+        }
+    }
+
     async DeleteUser(id) {
         try {
             const dbMatch = await storageManagerInstance.matchId(id);

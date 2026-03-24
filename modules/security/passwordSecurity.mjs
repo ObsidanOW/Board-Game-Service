@@ -6,7 +6,7 @@ export function securityAudit(req, res, next) {
     if(req.body.username === "" || req.body.password === ""){
         throw new Error(errEnum.wrongCredentials);
     }
-    if (req.method === "POST" || req.method === "DELETE") {
+    if (req.method === "POST" || req.method === "PATCH") {
         if (req.body.password) {
             let psw = req.body.password;
             req.body.password = "";
@@ -14,19 +14,7 @@ export function securityAudit(req, res, next) {
             let securityToken = createSecurePassToken(psw, process.env.SECRET);
             req.psw = securityToken;
         }
-    } else if (req.method === "PATCH") {
-        if (req.body.password) {
-            let psw = req.body.password;
-            req.body.password = "";
-            let newPsw = req.body.newpassword;
-            req.body.newpassword = "";
-
-            let securityToken = createSecurePassToken(psw, process.env.SECRET);
-            req.psw = securityToken;
-            let newSecurityToken = createSecurePassToken(newPsw, process.env.SECRET);
-            req.newPsw = newSecurityToken
-        }
-    }
+    } 
     next();
 }
 

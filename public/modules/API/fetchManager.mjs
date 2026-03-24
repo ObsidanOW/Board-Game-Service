@@ -1,9 +1,9 @@
 
-export async function sendRequest(method, url, data, contentType, Token = null) {
+export async function sendRequest(method, url, data, contentType, Token) {
 
     let headers = null;
 
-    if (Token === null) {
+    if (Token === null || undefined) {
         headers = {
             method,
             headers: {
@@ -18,6 +18,7 @@ export async function sendRequest(method, url, data, contentType, Token = null) 
                 'Authorization': `bearer ${Token}`,
             }
         };
+        console.log("Fetchmanager token: ", Token);
     }
 
     if (data) {

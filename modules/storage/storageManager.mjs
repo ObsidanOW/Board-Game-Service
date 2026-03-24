@@ -54,6 +54,10 @@ export class StorageManager {
         return this.provider.games(pool);
     }
 
+    async editUser(id, data) {
+return this.provider.editUser(id, data, pool)
+    }
+
     deleteUser(data) {
         return this.provider.deleteUser(data, pool);
     }

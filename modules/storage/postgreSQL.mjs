@@ -91,6 +91,22 @@ let postgreSQL = {
         }
     },
 
+    editUser: async (id, user, pool) => {
+        console.log("user " ,user);
+        try {
+            const userData = await pool.query(
+                'UPDATE "User" SET username = $1, password = $2 WHERE user_id = $3;',
+                [user.name, user.psw, id]
+            )
+            if (userData.rows[0]) {
+                return userData.rows[0]
+            }
+        }catch(err){
+            console.error(err);
+            throw Error(errEnum.databaseError);
+        }
+    },
+
     deleteUser: async (id, pool) => {
         try {
             const userData = await pool.query(
@@ -99,12 +115,12 @@ let postgreSQL = {
             )
             if (userData.rows[0]) {
                 return userData.rows[0];
-            }else{
+            } else {
                 throw new Error("user not found");
             }
         } catch (err) {
             console.error(err);
-            throw Error(errEnum.serverError);
+            throw Error(errEnum.databaseError);
         }
     }
 }

@@ -1,8 +1,9 @@
-import { GoHome, GoUser, GoGameDetail, LoginUser, DeletingUser, CreateUser, EditUser } from "./ViewHandling.mjs";
+import { GoHome, GoUser, GoGameDetail, LoginUser, DeletingUser, CreateUser, EditUser } from "./ViewHandling.mjs"
 
-console.log("events runs")
+console.log("events runs event script works -------------------------------------------------------------------------------------------------")
 
 document.addEventListener("GoHome", async (evt) => {
+  console.log("go home listener")
  GoHome();
 })
 

@@ -25,7 +25,6 @@ function render(target) {
         evt.preventDefault();
         const formData = new FormData(loginForm);
         const Form = Object.fromEntries(formData.entries());
-        console.log("login event");
         const CreateUserEvent = new CustomEvent("LoginUserEvent", { bubbles: true, composed: true, detail: Form });
         target.dispatchEvent(CreateUserEvent);
     })
@@ -36,7 +35,6 @@ function render(target) {
         evt.preventDefault();
         const formData = new FormData(createForm);
         const Form = Object.fromEntries(formData.entries());
-        console.log("create event");
         const CreateUserEvent = new CustomEvent("CreateUserEvent", { bubbles: true, composed: true, detail: Form });
         target.dispatchEvent(CreateUserEvent);
     })
@@ -63,7 +61,7 @@ function render(target) {
     })
 
 
-    const inputNames = ["username", "password", "newname", "newpassword"]
+    const inputNames = ["username", "password"]
 
     for (let i = 0; i < inputNames.length; i++) {
         const inputName = find(`input[name="${inputNames[i]}"]`, FormElement);

@@ -48,19 +48,22 @@ userRouter.post('/createuser', securityAudit, async (req, res, next) => {
 
 })
 
-userRouter.patch('/edituser', securityAudit, Authorization, (req, res, next) => {
+userRouter.patch('/edituser', securityAudit, Authorization, async (req, res, next) => {
     try {
-const id = req.id;
-
+        const id = req.id;
+        await userManagerInstance.EditUser(id, user(req.body.username, req.psw));
     }
-    catch (err) { next(err) }
+    catch (err) {
+console.error(err);
+        next(err)
+    }
 
 })
 
 userRouter.delete('/deleteuser', securityAudit, Authorization, async (req, res, next) => {
     try {
         const deletedUser = await userManagerInstance.DeleteUser(req.id);
-        res.status(200).json({result: "User " + deletedUser.username + " was deleted"})
+        res.status(200).json({ result: "User " + deletedUser.username + " was deleted" })
     }
     catch (err) {
         console.error("deleteuser failed", err);

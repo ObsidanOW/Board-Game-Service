@@ -1,4 +1,5 @@
-import { sendRequest } from "./fetchManager.js";
+import { getToken } from "../../app.mjs";
+import { sendRequest } from "./fetchManager.mjs";
 import HTTP from "./https.mjs";
 
 export async function get(url, contentType) {
@@ -90,20 +91,21 @@ export async function PatchUser(Form) {
     const url = "/user/edituser"
 
     try {
-        const data = await sendRequest("PATCH", url, Form, HTTP.contentTypes.application.json);
+        const data = await sendRequest("PATCH", url, Form, HTTP.contentTypes.application.json, getToken());
         console.log("response", data);
+        const json = await data.json();
+        console.log(json);
         return;
     } catch {
         //TODO errorhandling
     }
 }
 
-export async function DeleteUser(Form, Token) {
-    console.log("token: ", Token);
+export async function DeleteUser(Form) {
     const url = "/user/deleteuser"
 
     try {
-        const data = await sendRequest("DELETE", url, Form, HTTP.contentTypes.application.json, Token.token);
+        const data = await sendRequest("DELETE", url, Form, HTTP.contentTypes.application.json, getToken());
         console.log("response", data);
         const json = await data.json();
         console.log(json);
