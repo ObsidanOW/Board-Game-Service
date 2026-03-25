@@ -1,11 +1,12 @@
 const CACHE_NAME = "cache";
 const cacheFiles = [
-  './',
-  './index.html',
-  './app.css',
+  '../',
+  '../index.html',
+  '../app.css',
 ]
 
 self.addEventListener('install', event => {
+  console.log("install event");
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(cacheFiles)).catch(() => {

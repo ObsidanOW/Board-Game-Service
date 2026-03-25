@@ -36,7 +36,7 @@ if ("serviceWorker" in navigator) {
 }
 function registerServiceWorker() {
   navigator.serviceWorker
-    .register("/serviceWorker.mjs")
+    .register("/modules/serviceWorker.mjs")
     .then((registration) => {
       console.log("Service worker registered:", registration);
     })

@@ -18,7 +18,6 @@ export async function sendRequest(method, url, data, contentType, Token) {
                 'Authorization': `bearer ${Token}`,
             }
         };
-        console.log("Fetchmanager token: ", Token);
     }
 
     if (data) {
