@@ -7,8 +7,7 @@ import Authorization from "../modules/security/Authorization.mjs";
 import { userManagerInstance } from "../modules/userManager.mjs";
 import getLanguage from "../modules/languageProvider/getLanguage.mjs";
 import errorHandler from "../modules/errorHandler.mjs";
-import { errEnum } from "../modules/languageProvider/messageHandler.mjs";
-import { i18n } from "../modules/languageProvider/messageHandler.mjs"; 7
+import { i18n } from "../modules/languageProvider/messageHandler.mjs";
 
 
 
@@ -38,7 +37,6 @@ userRouter.post('/login', securityAudit, Authenticate, async (req, res, next) =>
 
 userRouter.post('/createuser', securityAudit, async (req, res, next) => {
     try {
-        console.log(req.body);
         await userManagerInstance.CreateUser(user(req.body.username, req.psw))
         res.status(200).json({ result: "created user" });
     } catch (err) {
