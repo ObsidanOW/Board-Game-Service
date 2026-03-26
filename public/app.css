@@ -16,3 +16,10 @@ button{
     min-height: 30px;
 }
 
+#toast{
+    visibility: hidden;
+}
+
+#toast.show{
+    visibility: visible;
+}

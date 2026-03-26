@@ -24,13 +24,20 @@ async function loadApp() {
       throw new Error("Server Error");
     }
 
+    let token = null;
+    try {
+      token = getToken();
+    } catch (error) {
+      setToken(undefined);
+    }
 
-    if (getToken() === null || getToken() === undefined) {
+    if (token === null || token === undefined) {
       GoUser();
     } else {
       GoHome();
     }
   } catch (err) {
+    console.log("error: ", err);
     GoOffline();
   }
 }

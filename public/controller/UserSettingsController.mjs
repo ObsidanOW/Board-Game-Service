@@ -1,6 +1,7 @@
 import loadView from "../modules/viewLoader.mjs";
 import find from "../modules/findElement.mjs";
 import homeButton from "../modules/componentControllers/homeButton.mjs";
+import  errorFieldController  from "../modules/componentControllers/errorFieldController.mjs"
 import { HTMLInner } from "../app.mjs";
 
 let viewName = "UserSettingsView";
@@ -90,6 +91,7 @@ function render(target) {
         buttonText.innerText = language[textCodes[i]];
     }
     target.appendChild(FormElement)
+    errorFieldController();
 }
 
 export default UserSettingsController

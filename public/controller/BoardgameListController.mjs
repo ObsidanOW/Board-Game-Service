@@ -1,6 +1,7 @@
 import loadView from "../modules/viewLoader.mjs";
 import find from "../modules/findElement.mjs";
 import userButton from "../modules/componentControllers/userButton.mjs";
+import  errorFieldController  from "../modules/componentControllers/errorFieldController.mjs"
 
 let viewName = "BoardgameListView";
 let viewItemName = "BoardgameListItem";
@@ -37,6 +38,7 @@ userButton(GameListElement, target)
         list.appendChild(gameElement);
     }
     target.appendChild(GameListElement);
+    errorFieldController();
 }
 
 export default BoardgameListController;

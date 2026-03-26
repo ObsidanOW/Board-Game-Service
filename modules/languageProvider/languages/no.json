@@ -4,7 +4,8 @@
         "nonExistentGame": "Game does not exist",
         "usernameIsTaken": "Brukernavn er tatt",
         "serverError": "Server feil",
-        "databaseError": "Database feil"
+        "databaseError": "Database feil",
+        "missingPrecondition": "Manglende felt, sjekk at alle nødvendige felt er fylt inn"
     },
     "feedback": {
         "confirmation": "Handling utført",
@@ -13,6 +14,10 @@
         "succesfulDelete": "Slettet bruker"
     },
     "HTML": {
+        "components": {
+            "user": "bruker",
+            "home": "hjem"
+        },
         "user": {
             "username": "brukernavn",
             "password": "passord",
