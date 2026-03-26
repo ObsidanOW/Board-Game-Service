@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import { userManagerInstance } from "../userManager.mjs";
-import user from "../../dataObjects/user.mjs";
-import { errEnum } from "../languageProvider/messageHandler.mjs";
+import { userManagerInstance } from "../../userManager.mjs";
+import user from "../../../dataObjects/user.mjs";
+import { errEnum } from "../../languageProvider/messageHandler.mjs";
 
 async function Authenticate(req, res, next) {
     let userId = null;

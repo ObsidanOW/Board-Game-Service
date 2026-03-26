@@ -1,7 +1,7 @@
 import express from "express"
 import sanitizeString from "../modules/middleware/SanitizeString.mjs"
 import { storageManagerInstance } from "../modules/storage/storageManager.mjs"
-import getLanguage from "../modules/languageProvider/getLanguage.mjs"
+import getLanguage from "../modules/middleware/getLanguage.mjs"
 import { i18n } from "../modules/languageProvider/messageHandler.mjs"
 
 const ContentRouter = express.Router()

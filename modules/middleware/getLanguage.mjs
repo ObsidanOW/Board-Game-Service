@@ -1,4 +1,4 @@
-import { Languages } from "./messageHandler.mjs";
+import { Languages } from "../languageProvider/messageHandler.mjs";
 
 
 

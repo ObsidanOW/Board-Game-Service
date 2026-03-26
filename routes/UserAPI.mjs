@@ -1,10 +1,10 @@
 import express from "express"
 import user from "../dataObjects/user.mjs";
-import securityAudit from "../modules/security/passwordSecurity.mjs";
-import Authenticate from "../modules/security/Authenticate.mjs";
-import Authorization from "../modules/security/Authorization.mjs";
+import securityAudit from "../modules/middleware/security/passwordSecurity.mjs";
+import Authenticate from "../modules/middleware/security/Authenticate.mjs";
+import Authorization from "../modules/middleware/security/Authorization.mjs";
 import { userManagerInstance } from "../modules/userManager.mjs";
-import getLanguage from "../modules/languageProvider/getLanguage.mjs";
+import getLanguage from "../modules/middleware/getLanguage.mjs";
 import errorHandler from "../modules/middleware/errorHandler.mjs";
 import { i18n } from "../modules/languageProvider/messageHandler.mjs";
 import consentCheckbox from "../modules/middleware/consentCheckbox.mjs";

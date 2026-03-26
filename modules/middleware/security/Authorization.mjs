@@ -1,10 +1,9 @@
 import jwt from "jsonwebtoken";
-import { errEnum } from "../languageProvider/messageHandler.mjs";
+import { errEnum } from "../../languageProvider/messageHandler.mjs";
 
 async function Authorization(req, res, next) {
 
     const token = req.headers.authorization.split(" ")[1];
-    console.log("token: ", token);
     try {
         jwt.verify(token, process.env.SECRET);
     } catch (err) {

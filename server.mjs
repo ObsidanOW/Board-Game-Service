@@ -1,8 +1,8 @@
 import express from "express";
 import ContentRouter from "./routes/ContentAPI.mjs";
 import UserRouter from "./routes/UserAPI.mjs";
-import getLanguage from "./modules/languageProvider/getLanguage.mjs";
-import errorHandler from "./modules/errorHandler.mjs";
+import getLanguage from "./modules/middleware/getLanguage.mjs";
+import errorHandler from "./modules/middleware/errorHandler.mjs";
 
 const port = 8080
 const app = express()
