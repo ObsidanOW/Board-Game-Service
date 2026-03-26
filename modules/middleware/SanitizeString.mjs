@@ -1,5 +1,5 @@
 function sanitizeString(req, res, next) {
-    const RegularExpression = /[^a-zA-Z0-9 s]/g
+    const RegularExpression = /[^a-zA-Z0-9 ]/g
     try {
         if (req?.query?.search) {
             const Lowercase = req.query.search.toLowerCase();
