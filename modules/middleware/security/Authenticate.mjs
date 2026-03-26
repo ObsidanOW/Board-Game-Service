@@ -6,7 +6,6 @@ import { errEnum } from "../../languageProvider/messageHandler.mjs";
 async function Authenticate(req, res, next) {
     let userId = null;
     try {
-        console.log("login atempt: ", new user(req.body.username, req.psw));
         userId = await userManagerInstance.LoginUser(new user(req.body.username, req.psw));
         if (userId === null || userId === undefined) {
             throw new Error(errEnum.wrongCredentials);

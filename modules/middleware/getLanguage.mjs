@@ -14,7 +14,6 @@ function getLanguage(req, res, next){
         req.language = Languages.NORWEGIAN;
     break;
     default:
-    console.log("language: "  + languageCode +  " did not match switch, using default")
     req.language = Languages.ENGLISH;
     break;
  }

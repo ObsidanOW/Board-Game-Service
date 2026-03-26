@@ -36,8 +36,7 @@ self.addEventListener('install', event => {
 
 
     )
-    console.log("cache didn't fail");
-  } catch (err) { console.log("cache failed: ", err) }
+  } catch (err) { console.error("cache failed: ", err) }
 });
 
 self.addEventListener('fetch', event => {

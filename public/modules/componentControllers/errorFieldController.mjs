@@ -4,7 +4,6 @@ const errorFieldController = () => {
     const toast = find("#toast", document);
     toast.addEventListener("erroreventcustom", (evt) => {
 const error = evt.detail.error;
-console.log("listened errorevent: ",error);
 toast.innerText = error;
 toast.className = "show";
 setTimeout(() => {

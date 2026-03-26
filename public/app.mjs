@@ -19,7 +19,6 @@ async function loadApp() {
 
   try {
     const connection = await GetConnectionTest();
-    console.log("CONNECTION: ", connection);
     if (connection.status !== 200) {
       throw new Error("Server Error");
     }
@@ -37,7 +36,6 @@ async function loadApp() {
       GoHome();
     }
   } catch (err) {
-    console.log("error: ", err);
     GoOffline();
   }
 }

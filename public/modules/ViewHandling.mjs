@@ -19,7 +19,6 @@ export async function GoGameDetail(game) {
 }
 
 export function GoOffline(){
-  console.log("go offline function");
   OfflineController(document.body);
 }
 

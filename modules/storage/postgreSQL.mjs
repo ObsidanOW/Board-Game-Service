@@ -92,7 +92,6 @@ let postgreSQL = {
     },
 
     editUser: async (id, user, pool) => {
-        console.log("user " ,user);
         try {
             const userData = await pool.query(
                 'UPDATE "User" SET username = $1, password = $2 WHERE user_id = $3;',

@@ -13,7 +13,6 @@ async function Authorization(req, res, next) {
 
     try {
         const tokenUser = jwt.decode(token, process.env.SECRET);
-        console.log(tokenUser);
         req.id = tokenUser.userId;
     } catch (err) {
         console.error(err);
