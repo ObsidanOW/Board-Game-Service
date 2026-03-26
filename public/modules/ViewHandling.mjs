@@ -1,8 +1,9 @@
 import { getToken, setToken } from "../app.mjs";
-import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames, GetGame, GetLanguage } from "./API/requests.mjs";
+import { PostUserCreate, PostUserLogin, PatchUser, DeleteUser, GetUserPage, GetGames, GetLanguage } from "./API/requests.mjs";
 import BoardgameListController from "../controller/BoardgameListController.mjs";
 import UserSettingsController from "../controller/UserSettingsController.mjs";
 import { BoardgameDetailController } from "../controller/BoardgameDetailController.mjs";
+import OfflineController from "../controller/OfflineController.mjs";
 
 export async function GoHome() {
   const games = await GetGames();
@@ -17,6 +18,10 @@ export async function GoGameDetail(game) {
   BoardgameDetailController(document.body, game);
 }
 
+export function GoOffline(){
+  console.log("go offline function");
+  OfflineController(document.body);
+}
 
 export async function LoginUser(login) {
   const response = await PostUserLogin(login)

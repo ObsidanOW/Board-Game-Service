@@ -9,11 +9,16 @@ const ContentRouter = express.Router()
 ContentRouter.use(express.json());
 ContentRouter.use(getLanguage);
 
+ContentRouter.get('/', async (req, res, next) => {
+   res.status(200).json({ok: true});
+
+})
+
 ContentRouter.get('/language', getLanguage, async (req, res, next) => {
    try {
-res.status(200).json(i18n[req.language]?.HTML);
+      res.status(200).json(i18n[req.language]?.HTML);
    } catch (err) {
-
+      console.error(err)
    }
 })
 

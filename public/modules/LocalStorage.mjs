@@ -1,5 +1,4 @@
 export function getStorage(key) {
-    console.log(localStorage);
     const itemString = localStorage.getItem(key);
     if (itemString !== null && itemString !== undefined) {
         const item = JSON.parse(itemString);

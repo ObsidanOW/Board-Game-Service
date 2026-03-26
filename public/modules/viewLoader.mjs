@@ -3,7 +3,6 @@ import HTTP from "./API/https.mjs"
 
 async function loadView(name){
    const viewTemplateRaw = await get(`./views/${name}.html`, HTTP.contentTypes.text.html);
-   console.log("viewTemplateRaw: ", viewTemplateRaw);
 const template = document.createElement("template");
 template.innerHTML = await viewTemplateRaw.text();
 return template;

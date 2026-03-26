@@ -1,9 +1,7 @@
-import { GoHome, GoUser, GoGameDetail, LoginUser, DeletingUser, CreateUser, EditUser } from "./ViewHandling.mjs"
+import { GoHome, GoUser, GoGameDetail, LoginUser, DeletingUser, CreateUser, EditUser, GoOffline } from "./ViewHandling.mjs"
 
-console.log("events runs event script works -------------------------------------------------------------------------------------------------")
 
 document.addEventListener("GoHome", async (evt) => {
-  console.log("go home listener")
  GoHome();
 })
 
@@ -15,6 +13,9 @@ document.addEventListener("GoGameDetail", async (evt) => {
   GoGameDetail(evt.detail.game);
 })
 
+document.addEventListener("GoOffline", async(evt) => {
+  GoOffline();
+})
 
 document.addEventListener("LoginUserEvent", async (evt) => {
   LoginUser(evt.detail);

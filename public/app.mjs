@@ -1,8 +1,6 @@
-import BoardgameListController from "./controller/BoardgameListController.mjs";
-import { BoardgameDetailController } from "./controller/BoardgameDetailController.mjs";
-import UserSettingsController from "./controller/UserSettingsController.mjs";
-import { GetGames, GetLanguage } from "./modules/API/requests.mjs";
+import { GetLanguage, GetConnectionTest } from "./modules/API/requests.mjs";
 import { getStorage, setStorage } from "./modules/localStorage.mjs";
+import { GoHome, GoUser, GoOffline } from "./modules/ViewHandling.mjs";
 
 
 export let HTMLInner = undefined;
@@ -18,13 +16,25 @@ async function loadApp() {
     setStorage("HTML" + languageCode, HTMLInner);
   }
 
-  if(getToken() === null || getToken() === undefined){
-     UserSettingsController(document.body);
-  }else{
-    const games = await GetGames();
-    BoardgameListController(document.body, games);
-  } 
+
+  try {
+    const connection = await GetConnectionTest();
+    console.log("CONNECTION: ", connection);
+    if (connection.status !== 200) {
+      throw new Error("Server Error");
+    }
+
+
+    if (getToken() === null || getToken() === undefined) {
+      GoUser();
+    } else {
+      GoHome();
+    }
+  } catch (err) {
+    GoOffline();
+  }
 }
+
 
 
 if ("serviceWorker" in navigator) {
@@ -36,7 +46,7 @@ if ("serviceWorker" in navigator) {
 }
 function registerServiceWorker() {
   navigator.serviceWorker
-    .register("/modules/serviceWorker.mjs")
+    .register("serviceWorker.mjs")
     .then((registration) => {
       console.log("Service worker registered:", registration);
     })
@@ -45,10 +55,10 @@ function registerServiceWorker() {
     });
 }
 
-export function setToken(newToken){
-setStorage("Token", newToken);
+export function setToken(newToken) {
+  setStorage("Token", newToken);
 }
 
-export function getToken(){
+export function getToken() {
   return getStorage("Token");
 }
