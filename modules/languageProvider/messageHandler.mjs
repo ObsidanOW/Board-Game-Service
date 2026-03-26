@@ -4,9 +4,12 @@ export const errEnum = {
     wrongCredentials: "wrongCredentials",
     nonExistentGame: "nonExistentGame",
     usernameIsTaken: "usernameIsTaken",
+    userDoesNotExist: "userDoesNotExist",
     serverError: "serverError",
     databaseError: "databaseError",
-    noPermission: "noPermission"
+    noPermission: "noPermission",
+    missingPrecondition: "missingPrecondition",
+
 }
 
 export const i18n = {

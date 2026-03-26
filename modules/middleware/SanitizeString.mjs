@@ -4,7 +4,6 @@ function sanitizeString(req, res, next) {
         if (req?.query?.search) {
             const Lowercase = req.query.search.toLowerCase();
             const NormalCharacters = Lowercase.replace(RegularExpression, "");
-
             req.Sanitized = NormalCharacters;
         }
         next();
@@ -12,12 +11,6 @@ function sanitizeString(req, res, next) {
         console.error(err);
         throw err
     }
-
 }
-
-
-
-
-
 
 export default sanitizeString

@@ -4,7 +4,8 @@
         "nonExistentGame": "Game does not exist",
         "usernameIsTaken": "Username is taken",
         "serverError": "Server error",
-        "databaseError": "Database error"
+        "databaseError": "Database error",
+        "missingPrecondition": "Missing field, check that all necessary fields are filled"
     },
     "feedback": {
         "userCreated": "User created",

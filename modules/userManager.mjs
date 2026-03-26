@@ -53,19 +53,13 @@ class userManager {
     }
 
     async DeleteUser(id) {
-        try {
             const dbMatch = await storageManagerInstance.matchId(id);
             if (dbMatch) {
                 const deletedUser = await storageManagerInstance.deleteUser(id);
                 return deletedUser;
             } else {
-                throw new Error("user not found");
+                throw new Error(errEnum.serverError);
             }
-        } catch (err) {
-            throw err
-        }
-
-
     }
 }
 
