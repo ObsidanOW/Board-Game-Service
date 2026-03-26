@@ -1,6 +1,7 @@
 import loadView from "../modules/viewLoader.mjs";
 import find from "../modules/findElement.mjs";
 import homeButton from "../modules/componentControllers/homeButton.mjs";
+import  errorFieldController  from "../modules/componentControllers/errorFieldController.mjs"
 
 const viewName = "BoardgameDetailView";
 let template = null;
@@ -21,4 +22,5 @@ homeButton(gameElement, target, null)
 //TODO change to language
   
     target.appendChild(gameElement);
+    errorFieldController();
 }

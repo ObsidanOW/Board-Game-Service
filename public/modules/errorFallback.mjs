@@ -1,8 +1,9 @@
+import { errorCustomEvent } from "./errorCustomEvent.mjs";
 import { GoUser, GoOffline } from "./ViewHandling.mjs";
 
-export function errorFallback(errorCode) {
+export function errorFallback(response) {
 
-    switch (errorCode) {
+    switch (response.status) {
         case 401:
             GoUser();
             break;
@@ -10,5 +11,9 @@ export function errorFallback(errorCode) {
         case 503:
 
             break;
+    }
+
+    if(!response.ok){
+errorCustomEvent(response);
     }
 }
