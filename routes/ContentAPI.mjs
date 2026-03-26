@@ -1,5 +1,5 @@
 import express from "express"
-import sanitizeString from "../modules/InputCleanup/SanitizeString.mjs"
+import sanitizeString from "../modules/middleware/SanitizeString.mjs"
 import { storageManagerInstance } from "../modules/storage/storageManager.mjs"
 import getLanguage from "../modules/languageProvider/getLanguage.mjs"
 import { i18n } from "../modules/languageProvider/messageHandler.mjs"
@@ -11,7 +11,6 @@ ContentRouter.use(getLanguage);
 
 ContentRouter.get('/', async (req, res, next) => {
    res.status(200).json({ok: true});
-
 })
 
 ContentRouter.get('/language', getLanguage, async (req, res, next) => {

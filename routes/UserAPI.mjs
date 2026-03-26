@@ -1,13 +1,13 @@
 import express from "express"
-import jwt from "jsonwebtoken";
 import user from "../dataObjects/user.mjs";
 import securityAudit from "../modules/security/passwordSecurity.mjs";
 import Authenticate from "../modules/security/Authenticate.mjs";
 import Authorization from "../modules/security/Authorization.mjs";
 import { userManagerInstance } from "../modules/userManager.mjs";
 import getLanguage from "../modules/languageProvider/getLanguage.mjs";
-import errorHandler from "../modules/errorHandler.mjs";
+import errorHandler from "../modules/middleware/errorHandler.mjs";
 import { i18n } from "../modules/languageProvider/messageHandler.mjs";
+import consentCheckbox from "../modules/middleware/consentCheckbox.mjs";
 
 
 
@@ -35,7 +35,7 @@ userRouter.post('/login', securityAudit, Authenticate, async (req, res, next) =>
 
 })
 
-userRouter.post('/createuser', securityAudit, async (req, res, next) => {
+userRouter.post('/createuser', consentCheckbox, securityAudit, async (req, res, next) => {
     try {
         await userManagerInstance.CreateUser(user(req.body.username, req.psw))
         res.status(200).json({ result: "created user" });

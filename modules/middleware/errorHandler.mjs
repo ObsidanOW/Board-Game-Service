@@ -1,4 +1,4 @@
-import { i18n, errEnum, Languages } from "./languageProvider/messageHandler.mjs";
+import { i18n, errEnum, Languages } from "../languageProvider/messageHandler.mjs";
 
 
 const errorHandler = (err, req, res, next) => {
