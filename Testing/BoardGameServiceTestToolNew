@@ -1,0 +1,249 @@
+{
+	"log": {
+		"version": "1.2",
+		"creator": {
+			"name": "Insomnia REST Client",
+			"version": "insomnia.desktop.app:v12.4.0"
+		},
+		"entries": [
+			{
+				"startedDateTime": "2026-03-27T09:16:36.175Z",
+				"time": 1215.7649999999999,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/user/createuser",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.4.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\"username\": \"mrUiA\",\n\"password\": \"JonLilletunsVei\",\n\t\"TOS\": \"on\"\n}\n"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "25"
+						},
+						{
+							"name": "ETag",
+							"value": "W/\"19-lMcyFUPckDkUXr92Z6ShGBqfNmk\""
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 27 Mar 2026 09:15:30 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"content": {
+						"size": 25,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"result\":\"created user\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 1215.7649999999999,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Create user"
+			},
+			{
+				"startedDateTime": "2026-03-27T09:16:36.175Z",
+				"time": 1163.479,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/content/home",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.4.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "71"
+						},
+						{
+							"name": "ETag",
+							"value": "W/\"47-wZVOX7ZZkdohjiQ2JdGw2AbifK0\""
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 27 Mar 2026 09:08:42 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"content": {
+						"size": 71,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "[{\"id\":\"1000\",\"status\":2,\"belongs_to\":1,\"title\":\"for the King and Me\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 1163.479,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Home page"
+			},
+			{
+				"startedDateTime": "2026-03-27T09:16:36.175Z",
+				"time": 13.254,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/content/connection",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.4.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "11"
+						},
+						{
+							"name": "ETag",
+							"value": "W/\"b-Ai2R8hgEarLmHKwesT1qcY913ys\""
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 27 Mar 2026 09:08:25 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"content": {
+						"size": 11,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"ok\":true}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 13.254,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Connection test"
+			}
+		]
+	}
+}

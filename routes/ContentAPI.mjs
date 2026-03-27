@@ -7,9 +7,8 @@ import { i18n } from "../modules/languageProvider/messageHandler.mjs"
 const ContentRouter = express.Router()
 
 ContentRouter.use(express.json());
-ContentRouter.use(getLanguage);
 
-ContentRouter.get('/', async (req, res, next) => {
+ContentRouter.get('/connection', async (req, res, next) => {
    res.status(200).json({ok: true});
 })
 

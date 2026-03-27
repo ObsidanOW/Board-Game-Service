@@ -15,7 +15,7 @@ export async function get(url, contentType) {
 }
 
 export async function GetConnectionTest() {
-    const url = "/content";
+    const url = "/content/connection";
     try {
         const data = await sendRequest("GET", url, null, null);
         errorFallback(data)

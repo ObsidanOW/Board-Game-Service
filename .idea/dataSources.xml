@@ -8,5 +8,19 @@
       <jdbc-url>jdbc:postgresql://dpg-d6e406a4d50c73b80n7g-a.frankfurt-postgres.render.com/boardgameservice</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="finalRenderDB" uuid="5369aad2-e8ac-4de0-941a-585b789dc362">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://dpg-d734qc95pdvs73f7o1v0-a.frankfurt-postgres.render.com:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="boardgameDB" uuid="6a41a651-eb04-4227-b594-61805a95cc6d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://dpg-d73609k2kvos7388mgg0-a.frankfurt-postgres.render.com:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
