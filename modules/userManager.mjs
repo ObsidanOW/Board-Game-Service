@@ -37,10 +37,6 @@ class userManager {
 
     async EditUser(id, newUserData) {
         try {
-             const dbMatchName = await storageManagerInstance.matchName(newUserData);
-            if(dbMatchName){
-                throw new Error(errEnum.usernameIsTaken);
-            }
             const dbMatchID = await storageManagerInstance.matchId(id);
             if (dbMatchID) {
                 const editUser = await storageManagerInstance.editUser(id, newUserData);
