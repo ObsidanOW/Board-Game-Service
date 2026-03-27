@@ -46,7 +46,6 @@ userRouter.patch('/edituser', securityAudit, Authorization, async (req, res, nex
 console.error(err);
         next(err)
     }
-
 })
 
 userRouter.delete('/deleteuser', securityAudit, Authorization, async (req, res, next) => {

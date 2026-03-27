@@ -15,7 +15,7 @@ async function Authenticate(req, res, next) {
         throw new Error(errEnum.wrongCredentials);
     }
 try{
-    const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '2m' });
+    const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '20m' });
     req.token = token;
 }catch(err){
     console.error(err);
