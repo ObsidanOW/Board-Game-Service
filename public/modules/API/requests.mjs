@@ -8,7 +8,7 @@ export async function get(url, contentType) {
     try {
         const data = await sendRequest("GET", url, null, contentType);
         return data;
-    } catch {
+    } catch(err) {
 
         throw err;
     }
@@ -99,7 +99,7 @@ export async function PatchUser(Form) {
         const data = await sendRequest("PATCH", url, Form, HTTP.contentTypes.application.json, getToken());
         errorFallback(data)
         return;
-    } catch {
+    } catch(err) {
 
         throw err;
     }
@@ -113,7 +113,7 @@ export async function DeleteUser(Form) {
         errorFallback(data)
 
         return;
-    } catch {
+    } catch(err) {
 
         throw err;
     }

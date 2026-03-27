@@ -15,15 +15,6 @@ import consentCheckbox from "../modules/middleware/consentCheckbox.mjs";
 const userRouter = express.Router()
 
 userRouter.use(express.json());
-userRouter.use(getLanguage);
-
-userRouter.get('/', (req, res, next) => {
-    try {
-        res.status(200).json(i18n[req.language]?.HTML.user)
-    } catch (err) {
-        next(err)
-    }
-})
 
 userRouter.post('/login', securityAudit, Authenticate, async (req, res, next) => {
     try {
