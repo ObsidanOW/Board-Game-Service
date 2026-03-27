@@ -23,6 +23,9 @@ const cacheFiles = [
   '/modules/Events.mjs',
   '/modules/API/requests.mjs',
   '/modules/API/https.mjs',
+  '/modules/errorCustomEvent.mjs',
+  '/modules/errorFallback.mjs',
+  '/modules/componentControllers/errorFieldController.mjs'
 ]
 
 
